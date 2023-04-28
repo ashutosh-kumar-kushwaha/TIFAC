@@ -21,7 +21,7 @@ class WebViewFragment : Fragment() {
         _binding = FragmentWebViewBinding.inflate(inflater, container, false)
 
         binding.webView.loadUrl("https://akgecskills.in/")
-//        binding.webView.settings.javaScriptEnabled = true
+        binding.webView.settings.javaScriptEnabled = true
         binding.webView.webViewClient = WebViewClient()
 
         return binding.root
