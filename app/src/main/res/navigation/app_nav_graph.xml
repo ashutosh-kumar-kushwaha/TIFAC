@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/webViewFragment"
-        android:name="in.silive.tifac.ui.webview.WebViewFragment"
+        android:name="in.silive.tifac.ui.akgecSkills.AkgecSkillsFragment"
         android:label="WebViewFragment"
-        tools:layout="@layout/fragment_web_view" />
+        tools:layout="@layout/fragment_akgec_skills" />
 </navigation>
