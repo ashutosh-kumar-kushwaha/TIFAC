@@ -2,4 +2,8 @@
     <string name="app_name">TIFAC</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="akgec_skills_logo">AKGEC Skills Logo</string>
+    <string name="akgec_digital_school">AKGEC Digital School</string>
+    <string name="go_to_akgecskills_in">Go to akgecskills.in</string>
+    <string name="based_on_accumulated_research_expertise_in_system_biology_with_the_vision_of_helping_understand_life_mechanism_better">Based on accumulated research expertise in system biology with the vision of helping understand life mechanism better.</string>
 </resources>
