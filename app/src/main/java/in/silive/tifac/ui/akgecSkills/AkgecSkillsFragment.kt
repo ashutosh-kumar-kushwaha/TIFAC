@@ -1,23 +1,25 @@
 package `in`.silive.tifac.ui.akgecSkills
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
-import `in`.silive.tifac.databinding.FragmentWebViewBinding
+import `in`.silive.tifac.databinding.FragmentAkgecSkillsBinding
 
 class AkgecSkillsFragment : Fragment() {
 
-    private var _binding: FragmentWebViewBinding? = null
-    private val binding: FragmentWebViewBinding get() = _binding!!
+    private var _binding: FragmentAkgecSkillsBinding? = null
+    private val binding: FragmentAkgecSkillsBinding get() = _binding!!
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentWebViewBinding.inflate(inflater, container, false)
+    ): View {
+        _binding = FragmentAkgecSkillsBinding.inflate(inflater, container, false)
 
         binding.webView.loadUrl("https://akgecskills.in/")
         binding.webView.settings.javaScriptEnabled = true
