@@ -11,12 +11,20 @@
         android:label="SplashFragment"
         tools:layout="@layout/fragment_splash">
         <action
-            android:id="@+id/action_splashFragment_to_webViewFragment"
-            app:destination="@id/webViewFragment" />
+            android:id="@+id/action_splashFragment_to_akgecSkillsFragment"
+            app:destination="@id/akgecSkillsFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_akgecDigitalSchoolFragment"
+            app:destination="@id/akgecDigitalSchoolFragment" />
     </fragment>
     <fragment
-        android:id="@+id/webViewFragment"
+        android:id="@+id/akgecSkillsFragment"
         android:name="in.silive.tifac.ui.akgecSkills.AkgecSkillsFragment"
-        android:label="WebViewFragment"
+        android:label="AkgecSkillsFragment"
         tools:layout="@layout/fragment_akgec_skills" />
+    <fragment
+        android:id="@+id/akgecDigitalSchoolFragment"
+        android:name="in.silive.tifac.ui.akgecDigitalSchool.AkgecDigitalSchoolFragment"
+        android:label="AkgecDigitalSchoolFragment"
+        tools:layout="@layout/fragment_akgec_digital_school"/>
 </navigation>

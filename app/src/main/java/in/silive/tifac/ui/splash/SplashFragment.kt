@@ -18,11 +18,14 @@ class SplashFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSplashBinding.inflate(inflater, container, false)
 
         binding.akgecSkillsBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_splashFragment_to_webViewFragment)
+            findNavController().navigate(R.id.action_splashFragment_to_akgecSkillsFragment)
+        }
+        binding.akgecDigitalSchoolBtn.setOnClickListener{
+            findNavController().navigate(R.id.action_splashFragment_to_akgecDigitalSchoolFragment)
         }
 
         return binding.root
