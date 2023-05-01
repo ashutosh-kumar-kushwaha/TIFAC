@@ -7,5 +7,5 @@ import retrofit2.http.Query
 
 interface RetrofitAPI {
     @GET("search")
-    suspend fun getVideos(@Query("type") type: String="video", @Query("part") part: String="snippet", @Query("maxResults") maxResults: Int = 10, @Query("q") searchText: String): Response<VideosResponse>
+    suspend fun getVideos(@Query("q") searchText: String, @Query("type") type: String="video", @Query("part") part: String="snippet", @Query("maxResults") maxResults: Int = 10): Response<VideosResponse>
 }
