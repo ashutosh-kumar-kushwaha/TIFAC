@@ -14,7 +14,7 @@ class AkgecDigitalSchoolFragment : Fragment() {
     private var _binding : FragmentAkgecDigitalSchoolBinding? = null
     private val binding: FragmentAkgecDigitalSchoolBinding get() = _binding!!
 
-    val tabs = arrayOf("Videos", "Playlists")
+    private val tabs = arrayOf("Videos", "Playlists")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
