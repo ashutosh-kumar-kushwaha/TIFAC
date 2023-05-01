@@ -1,6 +1,7 @@
 package `in`.silive.tifac.di
 
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import `in`.silive.tifac.Constants
@@ -12,6 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 @InstallIn(SingletonComponent::class)
 @Module
 class NetworkModule {
+    @Provides
     fun providesRetrofit(): RetrofitAPI = Retrofit.Builder().baseUrl(Constants.baseUrl)
         .addConverterFactory(GsonConverterFactory.create())
         .client(OkHttpClient.Builder().build())

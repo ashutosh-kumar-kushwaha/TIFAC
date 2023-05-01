@@ -5,11 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 import `in`.silive.tifac.adapters.ViewPagerAdapter
 import `in`.silive.tifac.databinding.FragmentAkgecDigitalSchoolBinding
 
+@AndroidEntryPoint
 class AkgecDigitalSchoolFragment : Fragment() {
 
     private var _binding : FragmentAkgecDigitalSchoolBinding? = null
@@ -35,8 +38,22 @@ class AkgecDigitalSchoolFragment : Fragment() {
             tab.text = tabs[position]
         }.attach()
 
+        binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                akgecDigitalSchoolViewModel.getVideos(query.toString())
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                akgecDigitalSchoolViewModel.getVideos(newText.toString())
+                return true
+            }
+
+        })
+
         return binding.root
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
