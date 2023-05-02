@@ -8,6 +8,10 @@
         tools:context=".ui.videos.VideosFragment">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/videsRecyclerView"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

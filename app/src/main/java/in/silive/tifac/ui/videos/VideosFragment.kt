@@ -7,7 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import `in`.silive.tifac.adapters.VideosRecyclerAdapter
+import `in`.silive.tifac.api.NetworkResult
 import `in`.silive.tifac.databinding.FragmentVideosBinding
 import `in`.silive.tifac.ui.akgecDigitalSchool.AkgecDigitalSchoolViewModel
 
@@ -19,18 +22,32 @@ class VideosFragment : Fragment() {
 
     private val akgecDigitalSchoolViewModel by viewModels<AkgecDigitalSchoolViewModel>({requireParentFragment()})
 
+    private val videosRecyclerAdapter = VideosRecyclerAdapter()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentVideosBinding.inflate(inflater, container, false)
+        binding.videsRecyclerView.adapter = videosRecyclerAdapter
+        binding.videsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         akgecDigitalSchoolViewModel.videosResponse.observe(viewLifecycleOwner){
-            Log.d("Video Fragment", it.data.toString())
+            when(it){
+                is NetworkResult.Success -> {
+                    videosRecyclerAdapter.submitList(it.data!!.items)
+                }
+                is NetworkResult.Error -> {
+
+                }
+                is NetworkResult.Loading -> {
+
+                }
+            }
         }
     }
 
