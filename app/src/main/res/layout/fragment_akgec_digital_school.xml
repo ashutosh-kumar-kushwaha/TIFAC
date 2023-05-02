@@ -53,6 +53,9 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginTop="16dp"
                 app:iconifiedByDefault="false"
+                android:hint="@string/search_lecture"
+                android:background="@drawable/search_view_bg"
+                app:searchIcon="@drawable/ic_search"
                 app:layout_constraintTop_toBottomOf="@id/akgec_digital_school_btn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
