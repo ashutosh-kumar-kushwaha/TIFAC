@@ -8,12 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import `in`.silive.tifac.databinding.LayoutVideoBinding
 import `in`.silive.tifac.models.Item
+import `in`.silive.tifac.time.TimesAgoFormat
+
 
 class VideosRecyclerAdapter : ListAdapter<Item, VideosRecyclerAdapter.VideoViewHolder>(DiffUtil()) {
     inner class VideoViewHolder(private val binding: LayoutVideoBinding) : RecyclerView.ViewHolder(binding.root){
+
         fun bind(item: Item){
             binding.thumbnailImgVw.load(item.snippet.thumbnails.high.url)
             binding.videoTitleTxtVw.text = item.snippet.title
+            binding.videoDetailsTxtVw.text = TimesAgoFormat().getTimeDifference(item.snippet.publishTime.substring(0,11))
         }
     }
 
