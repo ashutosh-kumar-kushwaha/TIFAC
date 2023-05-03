@@ -2,6 +2,7 @@ package `in`.silive.tifac.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.DiffUtil.ItemCallback
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -16,7 +17,8 @@ class VideosRecyclerAdapter : ListAdapter<Item, VideosRecyclerAdapter.VideoViewH
 
         fun bind(item: Item){
             binding.thumbnailImgVw.load(item.snippet.thumbnails.high.url)
-            binding.videoTitleTxtVw.text = item.snippet.title
+            val htmlSpannedString = HtmlCompat.fromHtml(item.snippet.title, HtmlCompat.FROM_HTML_MODE_LEGACY)
+            binding.videoTitleTxtVw.text = htmlSpannedString
             binding.videoDetailsTxtVw.text = TimesAgoFormat().getTimeDifference(item.snippet.publishTime.substring(0,11))
         }
     }
