@@ -38,24 +38,17 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/channel_logo_card_vw"
+        <ImageView
+            android:id="@+id/channel_logo_img_vw"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            app:cardCornerRadius="25dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/akgec_logo"
+            android:background="@color/white"
+            android:contentDescription="@string/channel_logo"
             android:layout_marginTop="9dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/thumbnail_card_view">
-
-            <ImageView
-                android:id="@+id/channel_logo_img_vw"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:src="@drawable/akgec_logo"
-                android:contentDescription="@string/channel_logo" />
-
-        </com.google.android.material.card.MaterialCardView>
+            app:layout_constraintTop_toBottomOf="@id/thumbnail_card_view" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/video_title_txt_vw"
@@ -66,7 +59,7 @@
             android:textSize="12sp"
             android:textColor="@color/color6"
             android:layout_marginStart="8dp"
-            app:layout_constraintStart_toEndOf="@id/channel_logo_card_vw"
+            app:layout_constraintStart_toEndOf="@id/channel_logo_img_vw"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/thumbnail_card_view" />
 
@@ -79,7 +72,7 @@
             android:textSize="10sp"
             android:textColor="@color/color1"
             android:layout_marginStart="8dp"
-            app:layout_constraintStart_toEndOf="@id/channel_logo_card_vw"
+            app:layout_constraintStart_toEndOf="@id/channel_logo_img_vw"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/video_title_txt_vw"
             tools:ignore="SmallSp" />
