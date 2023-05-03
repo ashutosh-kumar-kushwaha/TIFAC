@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,7 +43,7 @@ class VideosFragment : Fragment() {
                     videosRecyclerAdapter.submitList(it.data!!.items)
                 }
                 is NetworkResult.Error -> {
-
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                 }
                 is NetworkResult.Loading -> {
 

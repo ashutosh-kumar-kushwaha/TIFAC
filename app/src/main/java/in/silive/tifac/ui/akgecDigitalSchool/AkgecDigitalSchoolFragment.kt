@@ -1,6 +1,7 @@
 package `in`.silive.tifac.ui.akgecDigitalSchool
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -50,12 +51,13 @@ class AkgecDigitalSchoolFragment : Fragment() {
 
         binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                akgecDigitalSchoolViewModel.getVideos(query.toString())
+                akgecDigitalSchoolViewModel.getVideos()
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                akgecDigitalSchoolViewModel.getVideos(newText.toString())
+                akgecDigitalSchoolViewModel.getVideos()
+                newText.let { akgecDigitalSchoolViewModel.searchText.value = it }
                 return true
             }
 
@@ -66,6 +68,7 @@ class AkgecDigitalSchoolFragment : Fragment() {
         searchText.typeface = font
         searchText.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.color9))
         searchText.setTextColor(ContextCompat.getColor(requireContext(), R.color.color9))
+        searchText.setBackgroundColor(Color.TRANSPARENT)
 
         if(Build.VERSION.SDK_INT >= 29){
             searchText.textCursorDrawable = AppCompatResources.getDrawable(requireContext(), R.drawable.cursor)
