@@ -15,6 +15,8 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.viewModels
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import `in`.silive.tifac.R
@@ -31,6 +33,8 @@ class AkgecDigitalSchoolFragment : Fragment() {
     private val tabs = arrayOf("Videos", "Playlists")
 
     private val akgecDigitalSchoolViewModel by viewModels<AkgecDigitalSchoolViewModel>()
+
+    private var isVideoSelected = true
 
     @SuppressLint("DiscouragedPrivateApi")
     override fun onCreateView(
@@ -51,12 +55,20 @@ class AkgecDigitalSchoolFragment : Fragment() {
 
         binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                akgecDigitalSchoolViewModel.getVideos()
+                if(isVideoSelected)
+                    akgecDigitalSchoolViewModel.getVideos()
+                else
+                    akgecDigitalSchoolViewModel.getPlaylists()
+
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                akgecDigitalSchoolViewModel.getVideos()
+                if(isVideoSelected)
+                    akgecDigitalSchoolViewModel.getVideos()
+                else
+                    akgecDigitalSchoolViewModel.getPlaylists()
+
                 newText.let { akgecDigitalSchoolViewModel.searchText.value = it }
                 return true
             }
@@ -80,6 +92,21 @@ class AkgecDigitalSchoolFragment : Fragment() {
                 f.set(searchText, R.drawable.cursor)
             } catch (_: Exception){}
         }
+
+        binding.tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                isVideoSelected = !isVideoSelected
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+
+        })
 
         return binding.root
     }
