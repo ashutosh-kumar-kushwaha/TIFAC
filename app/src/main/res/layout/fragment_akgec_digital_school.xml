@@ -19,6 +19,15 @@
             android:layout_height="match_parent"
             android:background="@color/white">
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/toolbar_bg"
+                app:layout_constraintBottom_toBottomOf="@+id/tabLayout"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/akgec_digital_school_btn"
                 android:layout_width="wrap_content"
@@ -48,60 +57,35 @@
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchView"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="32dp"
                 android:layout_marginStart="24dp"
+                android:background="@drawable/search_view_bg"
                 android:layout_marginEnd="24dp"
                 android:layout_marginTop="16dp"
                 app:iconifiedByDefault="false"
-                android:hint="@string/search_lecture"
-                android:background="@drawable/search_view_bg"
                 app:searchIcon="@drawable/ic_search"
+                app:queryHint="Search"
                 app:layout_constraintTop_toBottomOf="@id/akgec_digital_school_btn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <ImageView
-                android:id="@+id/sort_btn"
-                android:layout_width="30dp"
-                android:layout_height="24dp"
-                android:padding="5dp"
-                android:src="@drawable/ic_sort"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="22dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/searchView"
-                android:contentDescription="@string/sort" />
-
-            <ImageView
-                android:id="@+id/filter_btn"
-                android:layout_width="30dp"
-                android:layout_height="24dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:src="@drawable/ic_filter"
-                android:layout_marginEnd="19dp"
-                android:layout_marginTop="22dp"
-                app:layout_constraintEnd_toStartOf="@id/sort_btn"
-                app:layout_constraintTop_toBottomOf="@id/searchView"
-                android:contentDescription="@string/filter" />
-
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:layout_height="40dp"
                 android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                app:tabIndicatorHeight="1.5dp"
-                app:tabSelectedTextColor="@color/color10"
-                app:tabSelectedTextAppearance="@style/TabSelectedText"
-                app:tabTextAppearance="@style/TabUnselectedText"
-                app:tabTextColor="@color/color3"
+                app:tabInlineLabel="true"
+                app:tabIndicator="@null"
+                app:tabIconTint="@null"
+                app:tabBackground="@color/tab_bg"
+                android:background="@color/white"
+                app:tabTextAppearance="@style/TabText"
+                app:tabTextColor="@color/color13"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/filter_btn"
-                app:layout_constraintTop_toTopOf="@id/filter_btn"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/searchView"/>
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPager"

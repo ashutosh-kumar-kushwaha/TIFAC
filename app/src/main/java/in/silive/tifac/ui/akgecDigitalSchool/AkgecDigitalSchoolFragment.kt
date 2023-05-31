@@ -4,14 +4,15 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.appcompat.widget.SearchView
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.viewModels
@@ -30,7 +31,8 @@ class AkgecDigitalSchoolFragment : Fragment() {
     private var _binding : FragmentAkgecDigitalSchoolBinding? = null
     private val binding: FragmentAkgecDigitalSchoolBinding get() = _binding!!
 
-    private val tabs = arrayOf("Videos", "Playlists")
+    private val tabsName = listOf("Videos", "Playlists")
+    private val tabsIcon = listOf(R.drawable.ic_video, R.drawable.ic_playlist)
 
     private val akgecDigitalSchoolViewModel by viewModels<AkgecDigitalSchoolViewModel>()
 
@@ -50,8 +52,10 @@ class AkgecDigitalSchoolFragment : Fragment() {
         binding.viewPager.adapter = adapter
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager){ tab, position ->
-            tab.text = tabs[position]
+            tab.text = tabsName[position]
+            tab.setIcon(tabsIcon[position])
         }.attach()
+
 
         binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -78,8 +82,9 @@ class AkgecDigitalSchoolFragment : Fragment() {
         val searchText = binding.searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
         val font = ResourcesCompat.getFont(requireContext(), R.font.gilroy_medium)
         searchText.typeface = font
-        searchText.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.color9))
-        searchText.setTextColor(ContextCompat.getColor(requireContext(), R.color.color9))
+        searchText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16F)
+        searchText.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.color3))
+        searchText.setTextColor(ContextCompat.getColor(requireContext(), R.color.color3))
         searchText.setBackgroundColor(Color.TRANSPARENT)
 
         if(Build.VERSION.SDK_INT >= 29){
