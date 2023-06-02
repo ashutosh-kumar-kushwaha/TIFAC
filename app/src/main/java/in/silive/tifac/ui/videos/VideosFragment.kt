@@ -30,8 +30,11 @@ class VideosFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentVideosBinding.inflate(inflater, container, false)
-        binding.videsRecyclerView.adapter = videosRecyclerAdapter
-        binding.videsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.videosRecyclerView.adapter = videosRecyclerAdapter
+        binding.videosRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+        akgecDigitalSchoolViewModel.getVideos()
+
         return binding.root
     }
 
@@ -40,7 +43,7 @@ class VideosFragment : Fragment() {
         akgecDigitalSchoolViewModel.videosResponse.observe(viewLifecycleOwner){
             when(it){
                 is NetworkResult.Success -> {
-                    videosRecyclerAdapter.submitList(it.data!!.items)
+                    videosRecyclerAdapter.submitList(it.data!!.content)
                 }
                 is NetworkResult.Error -> {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
@@ -54,7 +57,7 @@ class VideosFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+            _binding = null
     }
 
 }

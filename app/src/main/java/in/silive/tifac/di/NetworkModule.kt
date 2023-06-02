@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Module
 class NetworkModule {
     @Provides
-    fun providesRetrofit(): RetrofitAPI = Retrofit.Builder().baseUrl(Constants.baseUrl)
+    fun providesRetrofit(): RetrofitAPI = Retrofit.Builder().baseUrl(Constants.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(OkHttpClient.Builder().build())
         .build()

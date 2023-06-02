@@ -7,10 +7,10 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface RetrofitAPI {
-    @GET("search")
-    suspend fun getVideos(@Query("q") searchText: String, @Query("type") type: String="video", @Query("part") part: String="snippet", @Query("maxResults") maxResults: Int = 10): Response<VideosResponse>
+    @GET("api/youtube/getAllVideos")
+    suspend fun getVideos(@Query("pageNumber") pageNumber: Int, @Query("pageSize") pageSize: Int, @Query("sortBy") sortBy: String, @Query("sortDir") sortDir: String): Response<VideosResponse>
 
-    @GET("search")
-    suspend fun getPlaylists(@Query("q") searchText: String, @Query("type") type: String="playlist", @Query("part") part: String="snippet", @Query("maxResults") maxResults: Int = 10): Response<PlaylistsResponse>
+    @GET("api/youtube/getAllPlayLists")
+    suspend fun getPlaylists(@Query("pageNumber") pageNumber: Int, @Query("pageSize") pageSize: Int, @Query("sortBy") sortBy: String, @Query("sortDir") sortDir: String): Response<PlaylistsResponse>
 
 }

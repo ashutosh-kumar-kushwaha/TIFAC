@@ -12,10 +12,10 @@ class AkgecDigitalSchoolRepository @Inject constructor(private val retrofitAPI: 
     val videosResponse = SingleLiveEvent<NetworkResult<VideosResponse>>()
     val playlistsResponse = SingleLiveEvent<NetworkResult<PlaylistsResponse>>()
 
-    suspend fun getVideos(searchText: String){
+    suspend fun getVideos(){
         videosResponse.value = NetworkResult.Loading()
         try {
-            val response = retrofitAPI.getVideos(searchText)
+            val response = retrofitAPI.getVideos(1, 10, "publishedAt", "asc")
             when(response.code()){
                 200 -> {
                     if(response.body()!=null){
@@ -36,10 +36,10 @@ class AkgecDigitalSchoolRepository @Inject constructor(private val retrofitAPI: 
         }
     }
 
-    suspend fun getPlaylists(searchText: String){
+    suspend fun getPlaylists(){
         playlistsResponse.value = NetworkResult.Loading()
         try {
-            val response = retrofitAPI.getPlaylists(searchText)
+            val response = retrofitAPI.getPlaylists(1, 10, "publishedAt", "asc")
             when(response.code()){
                 200 -> {
                     if(response.body()!=null){

@@ -11,19 +11,19 @@ import javax.inject.Inject
 @HiltViewModel
 class AkgecDigitalSchoolViewModel @Inject constructor(private val akgecDigitalSchoolRepository: AkgecDigitalSchoolRepository): ViewModel() {
     val videosResponse get() = akgecDigitalSchoolRepository.videosResponse
-    val playlistsResponse get() = akgecDigitalSchoolRepository.videosResponse
+    val playlistsResponse get() = akgecDigitalSchoolRepository.playlistsResponse
 
     val searchText = MutableLiveData("")
 
     fun getVideos(){
         viewModelScope.launch {
-            akgecDigitalSchoolRepository.getVideos(searchText.value!!)
+            akgecDigitalSchoolRepository.getVideos()
         }
     }
 
     fun getPlaylists(){
         viewModelScope.launch {
-            akgecDigitalSchoolRepository.getPlaylists(searchText.value!!)
+            akgecDigitalSchoolRepository.getPlaylists()
         }
     }
 }
