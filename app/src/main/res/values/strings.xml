@@ -15,4 +15,6 @@
     <string name="akgec_skills">AKGEC Skills</string>
     <string name="filter">Filter</string>
     <string name="search_lecture">Search lecture</string>
+    <string name="back">Back</string>
+    <string name="recommendation">Recommendation</string>
 </resources>
