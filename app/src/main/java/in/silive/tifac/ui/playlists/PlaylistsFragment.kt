@@ -27,7 +27,7 @@ class PlaylistsFragment : Fragment() {
     ): View {
         _binding = FragmentPlaylistsBinding.inflate(inflater, container, false)
 
-        binding.playlistRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.playlistRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.playlistRecyclerView.adapter = playlistRecyclerAdapter
 
         akgecDigitalSchoolViewModel.getPlaylists()

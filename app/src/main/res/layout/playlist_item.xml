@@ -89,7 +89,7 @@
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/channel_logo_img_vw"
-            app:layout_constraintTop_toBottomOf="@id/video_title_txt_vw"
+            app:layout_constraintTop_toBottomOf="@id/playlist_title_txt_vw"
             tools:ignore="SmallSp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
