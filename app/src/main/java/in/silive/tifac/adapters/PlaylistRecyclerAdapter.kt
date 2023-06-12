@@ -9,11 +9,16 @@ import coil.load
 import `in`.silive.tifac.databinding.PlaylistItemBinding
 import `in`.silive.tifac.models.Playlist
 import `in`.silive.tifac.time.TimesAgoFormat
+import `in`.silive.tifac.transformation.CropTopBottomTransformation
 
 class PlaylistRecyclerAdapter : ListAdapter<Playlist, PlaylistRecyclerAdapter.PlaylistViewHolder>(DiffUtil()) {
     inner class PlaylistViewHolder(private val binding: PlaylistItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(playlist: Playlist){
-            binding.thumbnailImgVw.load(playlist.thumbnails.high.url)
+            binding.thumbnailImgVw.load(playlist.thumbnails.high.url){
+                transformations(
+                    CropTopBottomTransformation()
+                )
+            }
             binding.playlistTitleTxtVw.text = playlist.title
             binding.playlistDetailsTxtVw.text = TimesAgoFormat().getTimeDifference(playlist.publishedAt.substring(0,11))
 //            binding.noOfVideosTxtVw.text = playlist.

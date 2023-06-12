@@ -2,11 +2,14 @@ package `in`.silive.tifac.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.DiffUtil.ItemCallback
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.ImageLoader
 import coil.load
+import `in`.silive.tifac.transformation.CropTopBottomTransformation
 import `in`.silive.tifac.databinding.VideoItemBinding
 import `in`.silive.tifac.models.Video
 import `in`.silive.tifac.time.TimesAgoFormat
@@ -16,7 +19,11 @@ class VideosRecyclerAdapter : ListAdapter<Video, VideosRecyclerAdapter.VideoView
     inner class VideoViewHolder(private val binding: VideoItemBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun bind(video: Video){
-            binding.thumbnailImgVw.load(video.thumbnails.high.url)
+            binding.thumbnailImgVw.load(video.thumbnails.high.url){
+                transformations(
+                    CropTopBottomTransformation()
+                )
+            }
             val htmlSpannedString = HtmlCompat.fromHtml(video.title, HtmlCompat.FROM_HTML_MODE_LEGACY)
             binding.videoTitleTxtVw.text = htmlSpannedString
             binding.videoDetailsTxtVw.text = TimesAgoFormat().getTimeDifference(video.publishedAt.substring(0,11))
