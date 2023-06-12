@@ -1,7 +1,7 @@
 package `in`.silive.tifac.ui.videos
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +13,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import `in`.silive.tifac.adapters.VideosRecyclerAdapter
 import `in`.silive.tifac.api.NetworkResult
 import `in`.silive.tifac.databinding.FragmentVideosBinding
+import `in`.silive.tifac.interfaces.ItemClickListener
 import `in`.silive.tifac.ui.akgecDigitalSchool.AkgecDigitalSchoolViewModel
+import `in`.silive.tifac.ui.videoPlayer.VideoPlayerActivity
 
 @AndroidEntryPoint
 class VideosFragment : Fragment() {
@@ -23,13 +25,23 @@ class VideosFragment : Fragment() {
 
     private val akgecDigitalSchoolViewModel by viewModels<AkgecDigitalSchoolViewModel>({requireParentFragment()})
 
-    private val videosRecyclerAdapter = VideosRecyclerAdapter()
+    private lateinit var videosRecyclerAdapter: VideosRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentVideosBinding.inflate(inflater, container, false)
+
+
+        val itemClickListener = object : ItemClickListener{
+            override fun onItemClick() {
+                startActivity(Intent(requireContext(), VideoPlayerActivity::class.java))
+            }
+        }
+
+        videosRecyclerAdapter = VideosRecyclerAdapter(itemClickListener)
+
         binding.videosRecyclerView.adapter = videosRecyclerAdapter
         binding.videosRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 

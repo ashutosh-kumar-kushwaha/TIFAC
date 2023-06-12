@@ -27,4 +27,16 @@
         android:name="in.silive.tifac.ui.akgecDigitalSchool.AkgecDigitalSchoolFragment"
         android:label="AkgecDigitalSchoolFragment"
         tools:layout="@layout/fragment_akgec_digital_school"/>
+    <activity
+        android:id="@+id/videoPlayerActivity"
+        android:name="in.silive.tifac.ui.videoPlayer.VideoPlayerActivity"
+        android:label="VideoPlayerActivity" />
+    <fragment
+        android:id="@+id/videosFragment"
+        android:name="in.silive.tifac.ui.videos.VideosFragment"
+        android:label="VideosFragment" >
+        <action
+            android:id="@+id/action_videosFragment_to_videoPlayerActivity"
+            app:destination="@id/videoPlayerActivity" />
+    </fragment>
 </navigation>

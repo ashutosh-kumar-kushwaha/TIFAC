@@ -1,6 +1,7 @@
 package `in`.silive.tifac.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.text.HtmlCompat
@@ -11,12 +12,17 @@ import coil.ImageLoader
 import coil.load
 import `in`.silive.tifac.transformation.CropTopBottomTransformation
 import `in`.silive.tifac.databinding.VideoItemBinding
+import `in`.silive.tifac.interfaces.ItemClickListener
 import `in`.silive.tifac.models.Video
 import `in`.silive.tifac.time.TimesAgoFormat
 
 
-class VideosRecyclerAdapter : ListAdapter<Video, VideosRecyclerAdapter.VideoViewHolder>(DiffUtil()) {
-    inner class VideoViewHolder(private val binding: VideoItemBinding) : RecyclerView.ViewHolder(binding.root){
+class VideosRecyclerAdapter(private val itemClickListener: ItemClickListener) : ListAdapter<Video, VideosRecyclerAdapter.VideoViewHolder>(DiffUtil()) {
+    inner class VideoViewHolder(private val binding: VideoItemBinding) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+
+        init {
+            binding.root.setOnClickListener(this)
+        }
 
         fun bind(video: Video){
             binding.thumbnailImgVw.load(video.thumbnails.high.url){
@@ -27,6 +33,10 @@ class VideosRecyclerAdapter : ListAdapter<Video, VideosRecyclerAdapter.VideoView
             val htmlSpannedString = HtmlCompat.fromHtml(video.title, HtmlCompat.FROM_HTML_MODE_LEGACY)
             binding.videoTitleTxtVw.text = htmlSpannedString
             binding.videoDetailsTxtVw.text = TimesAgoFormat().getTimeDifference(video.publishedAt.substring(0,11))
+        }
+
+        override fun onClick(v: View?) {
+            itemClickListener.onItemClick()
         }
     }
 
