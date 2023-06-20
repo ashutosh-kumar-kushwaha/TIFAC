@@ -87,13 +87,14 @@
                     android:background="@drawable/toolbar_bg"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/player_view"
+                    app:layout_constraintTop_toTopOf="@id/youtube_player_view"
                     app:layout_constraintBottom_toBottomOf="@id/akgec_logo_img_vw"/>
 
-                <androidx.media3.ui.PlayerView
-                    android:id="@+id/player_view"
+                <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                    android:id="@+id/youtube_player_view"
                     android:layout_width="0dp"
-                    android:layout_height="202dp"
+                    android:layout_height="wrap_content"
+                    app:enableAutomaticInitialization="false"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -108,7 +109,7 @@
                     android:fontFamily="@font/gilroy_semibold"
                     android:textSize="16sp"
                     android:textColor="@color/color6"
-                    app:layout_constraintTop_toBottomOf="@id/player_view"
+                    app:layout_constraintTop_toBottomOf="@id/youtube_player_view"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
 

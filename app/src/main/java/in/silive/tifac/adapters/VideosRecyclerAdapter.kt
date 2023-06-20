@@ -36,7 +36,7 @@ class VideosRecyclerAdapter(private val itemClickListener: ItemClickListener) : 
         }
 
         override fun onClick(v: View?) {
-            itemClickListener.onItemClick()
+            itemClickListener.onItemClick(getItem(adapterPosition).videoId)
         }
     }
 

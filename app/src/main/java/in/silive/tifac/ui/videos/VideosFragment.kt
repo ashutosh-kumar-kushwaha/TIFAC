@@ -35,8 +35,10 @@ class VideosFragment : Fragment() {
 
 
         val itemClickListener = object : ItemClickListener{
-            override fun onItemClick() {
-                startActivity(Intent(requireContext(), VideoPlayerActivity::class.java))
+            override fun onItemClick(id: String) {
+                val intent = Intent(requireContext(), VideoPlayerActivity::class.java)
+                intent.putExtra("videoId", id)
+                startActivity(intent)
             }
         }
 
