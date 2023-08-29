@@ -15,7 +15,15 @@ import `in`.silive.tifac.domain.model.Video
 
 
 class VideosAdapter(private val videoClickListener: VideoClickListener) : ListAdapter<Video, VideosAdapter.VideoViewHolder>(
-    DiffUtil()
+    object : ItemCallback<Video>(){
+        override fun areItemsTheSame(oldItem: Video, newItem: Video): Boolean {
+            return newItem.id == oldItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: Video, newItem: Video): Boolean {
+            return newItem == oldItem
+        }
+    }
 ) {
     inner class VideoViewHolder(private val binding: VideoItemBinding) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
@@ -37,17 +45,6 @@ class VideosAdapter(private val videoClickListener: VideoClickListener) : ListAd
         override fun onClick(v: View?) {
             videoClickListener.onVideoClick(getItem(adapterPosition).id)
         }
-    }
-
-    class DiffUtil: ItemCallback<Video>(){
-        override fun areItemsTheSame(oldItem: Video, newItem: Video): Boolean {
-            return newItem.id == oldItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: Video, newItem: Video): Boolean {
-            return newItem == oldItem
-        }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
