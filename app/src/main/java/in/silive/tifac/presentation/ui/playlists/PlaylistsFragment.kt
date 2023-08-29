@@ -9,21 +9,23 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import `in`.silive.tifac.presentation.ui.adapters.PlaylistRecyclerAdapter
+import `in`.silive.tifac.presentation.ui.adapters.PlaylistsAdapter
 import `in`.silive.tifac.databinding.FragmentPlaylistsBinding
+import `in`.silive.tifac.presentation.ui.adapters.PlaylistClickListener
 import `in`.silive.tifac.presentation.ui.akgecDigitalSchool.AkgecDigitalSchoolViewModel
 import kotlinx.coroutines.launch
 
-class PlaylistsFragment : Fragment() {
+class PlaylistsFragment : Fragment(), PlaylistClickListener {
 
     private var _binding: FragmentPlaylistsBinding? = null
     private val binding: FragmentPlaylistsBinding get() = _binding!!
 
     private val akgecDigitalSchoolViewModel by viewModels<AkgecDigitalSchoolViewModel>({requireParentFragment()})
 
-    private val playlistRecyclerAdapter = PlaylistRecyclerAdapter()
+    private val playlistsAdapter by lazy {
+        PlaylistsAdapter(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,8 +33,7 @@ class PlaylistsFragment : Fragment() {
     ): View {
         _binding = FragmentPlaylistsBinding.inflate(inflater, container, false)
 
-        binding.playlistRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.playlistRecyclerView.adapter = playlistRecyclerAdapter
+        binding.playlistRecyclerView.adapter = playlistsAdapter
 
         akgecDigitalSchoolViewModel.getPlaylists()
 
@@ -45,7 +46,7 @@ class PlaylistsFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
                 akgecDigitalSchoolViewModel.playlists.collect{
-                    playlistRecyclerAdapter.submitList(it)
+                    playlistsAdapter.submitList(it)
                 }
             }
         }
@@ -71,5 +72,9 @@ class PlaylistsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onPlaylistClick(id: String) {
+
     }
 }
