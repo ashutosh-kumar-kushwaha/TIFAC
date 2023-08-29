@@ -31,11 +31,11 @@ class AkgecDigitalSchoolViewModel @Inject constructor(
     private val _playlists = MutableStateFlow<List<Playlist>>(emptyList())
     val playlists = _playlists.asStateFlow()
 
-    private val _isVideosLoading = MutableSharedFlow<Boolean>()
-    val isVideosLoading = _isVideosLoading.asSharedFlow()
+    private val _areVideosLoading = MutableSharedFlow<Boolean>()
+    val areVideosLoading = _areVideosLoading.asSharedFlow()
 
-    private val _isPlaylistsLoading = MutableSharedFlow<Boolean>()
-    val isPlaylistsLoading = _isPlaylistsLoading.asSharedFlow()
+    private val _arePlaylistsLoading = MutableSharedFlow<Boolean>()
+    val arePlaylistsLoading = _arePlaylistsLoading.asSharedFlow()
 
     private val _videosErrorMessage = Channel<String>()
     val videosErrorMessage = _videosErrorMessage.receiveAsFlow()
@@ -52,14 +52,14 @@ class AkgecDigitalSchoolViewModel @Inject constructor(
                 when(it){
                     is NetworkResult.Success -> {
                         _videos.emit(it.data!!)
-                        _isVideosLoading.emit(false)
+                        _areVideosLoading.emit(false)
                     }
                     is NetworkResult.Error -> {
                         _videosErrorMessage.send(it.message!!)
-                        _isVideosLoading.emit(false)
+                        _areVideosLoading.emit(false)
                     }
                     is NetworkResult.Loading -> {
-                        _isVideosLoading.emit(true)
+                        _areVideosLoading.emit(true)
                     }
                 }
             }
@@ -72,14 +72,14 @@ class AkgecDigitalSchoolViewModel @Inject constructor(
                 when(it){
                     is NetworkResult.Success -> {
                         _playlists.emit(it.data!!)
-                        _isPlaylistsLoading.emit(false)
+                        _arePlaylistsLoading.emit(false)
                     }
                     is NetworkResult.Error -> {
                         _playlistsErrorMessage.send(it.message!!)
-                        _isPlaylistsLoading.emit(false)
+                        _arePlaylistsLoading.emit(false)
                     }
                     is NetworkResult.Loading -> {
-                        _isPlaylistsLoading.emit(true)
+                        _arePlaylistsLoading.emit(true)
                     }
                 }
             }

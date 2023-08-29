@@ -6,26 +6,30 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import `in`.silive.tifac.presentation.ui.adapters.VideosRecyclerAdapter
-import `in`.silive.tifac.common.NetworkResult
+import `in`.silive.tifac.presentation.ui.adapters.VideosAdapter
 import `in`.silive.tifac.databinding.FragmentVideosBinding
-import `in`.silive.tifac.interfaces.ItemClickListener
+import `in`.silive.tifac.presentation.ui.adapters.VideoClickListener
 import `in`.silive.tifac.presentation.ui.akgecDigitalSchool.AkgecDigitalSchoolViewModel
 import `in`.silive.tifac.presentation.ui.videoPlayer.VideoPlayerActivity
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class VideosFragment : Fragment() {
+class VideosFragment : Fragment(), VideoClickListener {
 
     private var _binding : FragmentVideosBinding? = null
     private val binding: FragmentVideosBinding get() = _binding!!
 
     private val akgecDigitalSchoolViewModel by viewModels<AkgecDigitalSchoolViewModel>({requireParentFragment()})
 
-    private lateinit var videosRecyclerAdapter: VideosRecyclerAdapter
+    private val videosAdapter by lazy {
+        VideosAdapter(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,19 +37,7 @@ class VideosFragment : Fragment() {
     ): View {
         _binding = FragmentVideosBinding.inflate(inflater, container, false)
 
-
-        val itemClickListener = object : ItemClickListener{
-            override fun onItemClick(id: String) {
-                val intent = Intent(requireContext(), VideoPlayerActivity::class.java)
-                intent.putExtra("videoId", id)
-                startActivity(intent)
-            }
-        }
-
-        videosRecyclerAdapter = VideosRecyclerAdapter(itemClickListener)
-
-        binding.videosRecyclerView.adapter = videosRecyclerAdapter
-        binding.videosRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.videosRecyclerView.adapter = videosAdapter
 
         akgecDigitalSchoolViewModel.getVideos()
 
@@ -54,24 +46,42 @@ class VideosFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        akgecDigitalSchoolViewModel.videosResponse.observe(viewLifecycleOwner){
-            when(it){
-                is NetworkResult.Success -> {
-                    videosRecyclerAdapter.submitList(it.data!!.content)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+                akgecDigitalSchoolViewModel.videos.collect{
+                    videosAdapter.submitList(it)
                 }
-                is NetworkResult.Error -> {
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                }
-                is NetworkResult.Loading -> {
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+                akgecDigitalSchoolViewModel.areVideosLoading.collect{
 
                 }
             }
         }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+                akgecDigitalSchoolViewModel.videosErrorMessage.collect{
+                    Snackbar.make(requireView(), it, Snackbar.LENGTH_SHORT).show()
+                }
+            }
+        }
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
             _binding = null
+    }
+
+    override fun onVideoClick(id: String) {
+        val intent = Intent(requireContext(), VideoPlayerActivity::class.java)
+        intent.putExtra("id", id)
+        startActivity(intent)
     }
 
 }

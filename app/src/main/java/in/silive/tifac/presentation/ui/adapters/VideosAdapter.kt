@@ -10,12 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import `in`.silive.tifac.common.transformation.CropTopBottomTransformation
 import `in`.silive.tifac.databinding.VideoItemBinding
-import `in`.silive.tifac.interfaces.ItemClickListener
-import `in`.silive.tifac.data.remote.dto.VideoItem
 import `in`.silive.tifac.common.time.TimesAgoFormat
+import `in`.silive.tifac.domain.model.Video
 
 
-class VideosRecyclerAdapter(private val itemClickListener: ItemClickListener) : ListAdapter<VideoItem, VideosRecyclerAdapter.VideoViewHolder>(
+class VideosAdapter(private val videoClickListener: VideoClickListener) : ListAdapter<Video, VideosAdapter.VideoViewHolder>(
     DiffUtil()
 ) {
     inner class VideoViewHolder(private val binding: VideoItemBinding) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
@@ -24,8 +23,8 @@ class VideosRecyclerAdapter(private val itemClickListener: ItemClickListener) : 
             binding.root.setOnClickListener(this)
         }
 
-        fun bind(video: VideoItem){
-            binding.thumbnailImgVw.load(video.thumbnails.high.url){
+        fun bind(video: Video){
+            binding.thumbnailImgVw.load(video.thumbnail){
                 transformations(
                     CropTopBottomTransformation()
                 )
@@ -36,16 +35,16 @@ class VideosRecyclerAdapter(private val itemClickListener: ItemClickListener) : 
         }
 
         override fun onClick(v: View?) {
-            itemClickListener.onItemClick(getItem(adapterPosition).videoId)
+            videoClickListener.onVideoClick(getItem(adapterPosition).id)
         }
     }
 
-    class DiffUtil: ItemCallback<VideoItem>(){
-        override fun areItemsTheSame(oldItem: VideoItem, newItem: VideoItem): Boolean {
-            return newItem.videoId == oldItem.videoId
+    class DiffUtil: ItemCallback<Video>(){
+        override fun areItemsTheSame(oldItem: Video, newItem: Video): Boolean {
+            return newItem.id == oldItem.id
         }
 
-        override fun areContentsTheSame(oldItem: VideoItem, newItem: VideoItem): Boolean {
+        override fun areContentsTheSame(oldItem: Video, newItem: Video): Boolean {
             return newItem == oldItem
         }
 
@@ -58,4 +57,8 @@ class VideosRecyclerAdapter(private val itemClickListener: ItemClickListener) : 
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
+}
+
+interface VideoClickListener{
+    fun onVideoClick(id: String)
 }

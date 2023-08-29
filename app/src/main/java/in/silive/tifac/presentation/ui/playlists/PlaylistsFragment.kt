@@ -12,7 +12,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import `in`.silive.tifac.presentation.ui.adapters.PlaylistRecyclerAdapter
-import `in`.silive.tifac.common.NetworkResult
 import `in`.silive.tifac.databinding.FragmentPlaylistsBinding
 import `in`.silive.tifac.presentation.ui.akgecDigitalSchool.AkgecDigitalSchoolViewModel
 import kotlinx.coroutines.launch
@@ -53,7 +52,7 @@ class PlaylistsFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-                akgecDigitalSchoolViewModel.isPlaylistsLoading.collect{
+                akgecDigitalSchoolViewModel.arePlaylistsLoading.collect{
 
                 }
             }
