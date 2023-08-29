@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import `in`.silive.tifac.databinding.PlaylistItemBinding
-import `in`.silive.tifac.models.Playlist
+import `in`.silive.tifac.data.remote.dto.Playlist
 import `in`.silive.tifac.common.time.TimesAgoFormat
 import `in`.silive.tifac.common.transformation.CropTopBottomTransformation
 

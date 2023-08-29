@@ -4,7 +4,7 @@ import android.util.Log
 import `in`.silive.tifac.SingleLiveEvent
 import `in`.silive.tifac.common.NetworkResult
 import `in`.silive.tifac.data.remote.TifacApi
-import `in`.silive.tifac.models.PlaylistsResponse
+import `in`.silive.tifac.data.remote.dto.PlaylistsResponse
 import `in`.silive.tifac.data.remote.dto.VideosDto
 import javax.inject.Inject
 

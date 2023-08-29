@@ -1,6 +1,6 @@
-package `in`.silive.tifac.models
+package `in`.silive.tifac.data.remote.dto
 
-data class PlaylistsResponse(
+data class PlaylistsDto(
     val content: List<Playlist>,
     val lastPage: Boolean,
     val pageNumber: Int,

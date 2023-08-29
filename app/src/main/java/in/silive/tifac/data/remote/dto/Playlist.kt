@@ -1,4 +1,4 @@
-package `in`.silive.tifac.models
+package `in`.silive.tifac.data.remote.dto
 
 import `in`.silive.tifac.data.remote.dto.Thumbnails
 

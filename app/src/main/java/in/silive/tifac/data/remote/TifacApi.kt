@@ -1,6 +1,6 @@
 package `in`.silive.tifac.data.remote
 
-import `in`.silive.tifac.models.PlaylistsResponse
+import `in`.silive.tifac.data.remote.dto.PlaylistsDto
 import `in`.silive.tifac.data.remote.dto.VideoDto
 import `in`.silive.tifac.data.remote.dto.VideosDto
 import retrofit2.http.GET
@@ -12,7 +12,7 @@ interface TifacApi {
     suspend fun getVideos(@Query("pageNumber") pageNumber: Int, @Query("pageSize") pageSize: Int, @Query("sortBy") sortBy: String, @Query("sortDir") sortDir: String): VideosDto
 
     @GET("api/youtube/getAllPlayLists")
-    suspend fun getPlaylists(@Query("pageNumber") pageNumber: Int, @Query("pageSize") pageSize: Int, @Query("sortBy") sortBy: String, @Query("sortDir") sortDir: String): PlaylistsResponse
+    suspend fun getPlaylists(@Query("pageNumber") pageNumber: Int, @Query("pageSize") pageSize: Int, @Query("sortBy") sortBy: String, @Query("sortDir") sortDir: String): PlaylistsDto
 
     @GET("api/youtube/getVideoById/{videoId}")
     suspend fun getVideoById(@Path("videoId") videoId: String) : VideoDto

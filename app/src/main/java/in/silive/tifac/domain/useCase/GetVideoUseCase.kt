@@ -10,7 +10,7 @@ import retrofit2.HttpException
 import javax.inject.Inject
 
 class GetVideoUseCase @Inject constructor(private val videoRepository: VideoRepository){
-    suspend fun invoke(id: String) : Flow<NetworkResult<Video>> = flow{
+    suspend operator fun invoke(id: String) : Flow<NetworkResult<Video>> = flow{
         emit(NetworkResult.Loading())
         try {
             val video = videoRepository.getVideoById(id).toVideo()
