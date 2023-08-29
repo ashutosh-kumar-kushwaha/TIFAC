@@ -25,6 +25,11 @@ class AkgecDigitalSchoolViewModel @Inject constructor(
     private val getPlaylistsUseCase: GetPlaylistsUseCase
 ): ViewModel() {
 
+    init {
+        getVideos()
+        getPlaylists()
+    }
+
     private val _videos = MutableStateFlow<List<Video>>(emptyList())
     val videos = _videos.asStateFlow()
 

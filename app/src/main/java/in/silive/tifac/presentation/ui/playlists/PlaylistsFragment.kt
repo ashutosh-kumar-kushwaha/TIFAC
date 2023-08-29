@@ -35,8 +35,6 @@ class PlaylistsFragment : Fragment(), PlaylistClickListener {
 
         binding.playlistRecyclerView.adapter = playlistsAdapter
 
-        akgecDigitalSchoolViewModel.getPlaylists()
-
         return binding.root
     }
 

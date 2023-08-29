@@ -39,8 +39,6 @@ class VideosFragment : Fragment(), VideoClickListener {
 
         binding.videosRecyclerView.adapter = videosAdapter
 
-        akgecDigitalSchoolViewModel.getVideos()
-
         return binding.root
     }
 
