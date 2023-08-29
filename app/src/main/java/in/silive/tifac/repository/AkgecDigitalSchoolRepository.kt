@@ -2,20 +2,20 @@ package `in`.silive.tifac.repository
 
 import android.util.Log
 import `in`.silive.tifac.SingleLiveEvent
-import `in`.silive.tifac.api.NetworkResult
-import `in`.silive.tifac.api.RetrofitAPI
+import `in`.silive.tifac.common.NetworkResult
+import `in`.silive.tifac.data.remote.TifacApi
 import `in`.silive.tifac.models.PlaylistsResponse
-import `in`.silive.tifac.models.VideosResponse
+import `in`.silive.tifac.data.remote.dto.VideosDto
 import javax.inject.Inject
 
-class AkgecDigitalSchoolRepository @Inject constructor(private val retrofitAPI: RetrofitAPI){
-    val videosResponse = SingleLiveEvent<NetworkResult<VideosResponse>>()
+class AkgecDigitalSchoolRepository @Inject constructor(private val tifacApi: TifacApi){
+    val videosResponse = SingleLiveEvent<NetworkResult<VideosDto>>()
     val playlistsResponse = SingleLiveEvent<NetworkResult<PlaylistsResponse>>()
 
     suspend fun getVideos(){
         videosResponse.value = NetworkResult.Loading()
         try {
-            val response = retrofitAPI.getVideos(1, 10, "publishedAt", "asc")
+            val response = tifacApi.getVideos(1, 10, "publishedAt", "asc")
             when(response.code()){
                 200 -> {
                     if(response.body()!=null){
@@ -39,7 +39,7 @@ class AkgecDigitalSchoolRepository @Inject constructor(private val retrofitAPI: 
     suspend fun getPlaylists(){
         playlistsResponse.value = NetworkResult.Loading()
         try {
-            val response = retrofitAPI.getPlaylists(1, 10, "publishedAt", "asc")
+            val response = tifacApi.getPlaylists(1, 10, "publishedAt", "asc")
             when(response.code()){
                 200 -> {
                     if(response.body()!=null){

@@ -1,19 +1,18 @@
 package `in`.silive.tifac.repository
 
-import android.util.Log
 import `in`.silive.tifac.SingleLiveEvent
-import `in`.silive.tifac.api.NetworkResult
-import `in`.silive.tifac.api.RetrofitAPI
-import `in`.silive.tifac.models.VideoDetails
+import `in`.silive.tifac.common.NetworkResult
+import `in`.silive.tifac.data.remote.TifacApi
+import `in`.silive.tifac.data.remote.dto.VideoDto
 import javax.inject.Inject
 
-class VideoPlayerRepository @Inject constructor(private val retrofitAPI: RetrofitAPI) {
-    val videoDetails = SingleLiveEvent<NetworkResult<VideoDetails>>()
+class VideoPlayerRepository @Inject constructor(private val tifacApi: TifacApi) {
+    val videoDetails = SingleLiveEvent<NetworkResult<VideoDto>>()
 
     suspend fun getVideoDetails(videoId: String){
         videoDetails.value = NetworkResult.Loading()
         try {
-            val response = retrofitAPI.getVideoDetails(videoId)
+            val response = tifacApi.getVideoDetails(videoId)
             when(response.code()){
                 200 -> {
                     if(response.body()!=null){

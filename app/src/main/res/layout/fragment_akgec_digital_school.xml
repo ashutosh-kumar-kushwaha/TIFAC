@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.akgecDigitalSchool.AkgecDigitalSchoolFragment">
+    tools:context=".presentation.ui.akgecDigitalSchool.AkgecDigitalSchoolFragment">
 
     <data>
 
         <variable
             name="viewModel"
-            type="in.silive.tifac.ui.akgecDigitalSchool.AkgecDigitalSchoolViewModel" />
+            type="in.silive.tifac.presentation.ui.akgecDigitalSchool.AkgecDigitalSchoolViewModel" />
     </data>
 
     <LinearLayout
