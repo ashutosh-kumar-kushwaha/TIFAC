@@ -34,11 +34,14 @@ class AkgecDigitalSchoolViewModel @Inject constructor(
     private val _isVideosLoading = MutableSharedFlow<Boolean>()
     val isVideosLoading = _isVideosLoading.asSharedFlow()
 
-    private val _isPlaylistsLoading = MutableSharedFlow<>()
+    private val _isPlaylistsLoading = MutableSharedFlow<Boolean>()
     val isPlaylistsLoading = _isPlaylistsLoading.asSharedFlow()
 
-    private val _errorMessage = Channel<String>()
-    val errorMessage = _errorMessage.receiveAsFlow()
+    private val _videosErrorMessage = Channel<String>()
+    val videosErrorMessage = _videosErrorMessage.receiveAsFlow()
+
+    private val _playlistsErrorMessage = Channel<String>()
+    val playlistsErrorMessage = _playlistsErrorMessage.receiveAsFlow()
 
 
     val searchText = MutableLiveData("")
@@ -52,7 +55,7 @@ class AkgecDigitalSchoolViewModel @Inject constructor(
                         _isVideosLoading.emit(false)
                     }
                     is NetworkResult.Error -> {
-                        _errorMessage.send(it.message!!)
+                        _videosErrorMessage.send(it.message!!)
                         _isVideosLoading.emit(false)
                     }
                     is NetworkResult.Loading -> {
@@ -72,7 +75,7 @@ class AkgecDigitalSchoolViewModel @Inject constructor(
                         _isPlaylistsLoading.emit(false)
                     }
                     is NetworkResult.Error -> {
-                        _errorMessage.send(it.message!!)
+                        _playlistsErrorMessage.send(it.message!!)
                         _isPlaylistsLoading.emit(false)
                     }
                     is NetworkResult.Loading -> {

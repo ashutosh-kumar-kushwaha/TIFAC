@@ -6,11 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import `in`.silive.tifac.presentation.ui.adapters.PlaylistRecyclerAdapter
 import `in`.silive.tifac.common.NetworkResult
 import `in`.silive.tifac.databinding.FragmentPlaylistsBinding
 import `in`.silive.tifac.presentation.ui.akgecDigitalSchool.AkgecDigitalSchoolViewModel
+import kotlinx.coroutines.launch
 
 class PlaylistsFragment : Fragment() {
 
@@ -38,16 +43,26 @@ class PlaylistsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        akgecDigitalSchoolViewModel.playlistsResponse.observe(viewLifecycleOwner){
-            when(it){
-                is NetworkResult.Success -> {
-                    playlistRecyclerAdapter.submitList(it.data?.content)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+                akgecDigitalSchoolViewModel.playlists.collect{
+                    playlistRecyclerAdapter.submitList(it)
                 }
-                is NetworkResult.Error -> {
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+                akgecDigitalSchoolViewModel.isPlaylistsLoading.collect{
 
                 }
-                is NetworkResult.Loading -> {
+            }
+        }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+                akgecDigitalSchoolViewModel.playlistsErrorMessage.collect{
+                    Snackbar.make(requireView(), it, Snackbar.LENGTH_SHORT).show()
                 }
             }
         }
