@@ -1,4 +1,4 @@
-package `in`.silive.tifac.presentation.ui.videoPlayer
+package `in`.silive.tifac.presentation.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

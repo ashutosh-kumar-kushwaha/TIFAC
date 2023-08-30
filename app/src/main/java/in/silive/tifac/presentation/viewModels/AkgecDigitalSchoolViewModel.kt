@@ -1,4 +1,4 @@
-package `in`.silive.tifac.presentation.ui.akgecDigitalSchool
+package `in`.silive.tifac.presentation.viewModels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

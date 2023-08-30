@@ -1,4 +1,4 @@
-package `in`.silive.tifac.presentation.ui.videoPlayer
+package `in`.silive.tifac.presentation.activities.videoPlayer
 
 import android.app.PictureInPictureParams
 import android.os.Build
@@ -13,8 +13,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import dagger.hilt.android.AndroidEntryPoint
 import `in`.silive.tifac.R
-import `in`.silive.tifac.common.NetworkResult
 import `in`.silive.tifac.databinding.ActivityVideoBinding
+import `in`.silive.tifac.presentation.viewModels.VideoPlayerViewModel
 
 @AndroidEntryPoint
 class VideoPlayerActivity : AppCompatActivity() {

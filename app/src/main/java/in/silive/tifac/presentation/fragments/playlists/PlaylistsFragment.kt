@@ -1,6 +1,5 @@
-package `in`.silive.tifac.presentation.ui.videos
+package `in`.silive.tifac.presentation.fragments.playlists
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,33 +10,30 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.snackbar.Snackbar
-import dagger.hilt.android.AndroidEntryPoint
-import `in`.silive.tifac.presentation.ui.adapters.VideosAdapter
-import `in`.silive.tifac.databinding.FragmentVideosBinding
-import `in`.silive.tifac.presentation.ui.adapters.VideoClickListener
-import `in`.silive.tifac.presentation.ui.akgecDigitalSchool.AkgecDigitalSchoolViewModel
-import `in`.silive.tifac.presentation.ui.videoPlayer.VideoPlayerActivity
+import `in`.silive.tifac.presentation.adapters.PlaylistsAdapter
+import `in`.silive.tifac.databinding.FragmentPlaylistsBinding
+import `in`.silive.tifac.presentation.adapters.PlaylistClickListener
+import `in`.silive.tifac.presentation.viewModels.AkgecDigitalSchoolViewModel
 import kotlinx.coroutines.launch
 
-@AndroidEntryPoint
-class VideosFragment : Fragment(), VideoClickListener {
+class PlaylistsFragment : Fragment(), PlaylistClickListener {
 
-    private var _binding : FragmentVideosBinding? = null
-    private val binding: FragmentVideosBinding get() = _binding!!
+    private var _binding: FragmentPlaylistsBinding? = null
+    private val binding: FragmentPlaylistsBinding get() = _binding!!
 
     private val akgecDigitalSchoolViewModel by viewModels<AkgecDigitalSchoolViewModel>({requireParentFragment()})
 
-    private val videosAdapter by lazy {
-        VideosAdapter(this)
+    private val playlistsAdapter by lazy {
+        PlaylistsAdapter(this)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentVideosBinding.inflate(inflater, container, false)
+        _binding = FragmentPlaylistsBinding.inflate(inflater, container, false)
 
-        binding.videosRecyclerView.adapter = videosAdapter
+        binding.playlistRecyclerView.adapter = playlistsAdapter
 
         return binding.root
     }
@@ -47,15 +43,15 @@ class VideosFragment : Fragment(), VideoClickListener {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-                akgecDigitalSchoolViewModel.videos.collect{
-                    videosAdapter.submitList(it)
+                akgecDigitalSchoolViewModel.playlists.collect{
+                    playlistsAdapter.submitList(it)
                 }
             }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-                akgecDigitalSchoolViewModel.areVideosLoading.collect{
+                akgecDigitalSchoolViewModel.arePlaylistsLoading.collect{
 
                 }
             }
@@ -63,7 +59,7 @@ class VideosFragment : Fragment(), VideoClickListener {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-                akgecDigitalSchoolViewModel.videosErrorMessage.collect{
+                akgecDigitalSchoolViewModel.playlistsErrorMessage.collect{
                     Snackbar.make(requireView(), it, Snackbar.LENGTH_SHORT).show()
                 }
             }
@@ -73,13 +69,10 @@ class VideosFragment : Fragment(), VideoClickListener {
 
     override fun onDestroyView() {
         super.onDestroyView()
-            _binding = null
+        _binding = null
     }
 
-    override fun onVideoClick(id: String) {
-        val intent = Intent(requireContext(), VideoPlayerActivity::class.java)
-        intent.putExtra("id", id)
-        startActivity(intent)
-    }
+    override fun onPlaylistClick(id: String) {
 
+    }
 }

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="in.silive.tifac.presentation.ui.splash.SplashFragment"
+        android:name="in.silive.tifac.presentation.fragments.splash.SplashFragment"
         android:label="SplashFragment"
         tools:layout="@layout/fragment_splash">
         <action
@@ -19,12 +19,12 @@
     </fragment>
     <fragment
         android:id="@+id/akgecSkillsFragment"
-        android:name="in.silive.tifac.presentation.ui.akgecSkills.AkgecSkillsFragment"
+        android:name="in.silive.tifac.presentation.fragments.akgecSkills.AkgecSkillsFragment"
         android:label="AkgecSkillsFragment"
         tools:layout="@layout/fragment_akgec_skills" />
     <fragment
         android:id="@+id/akgecDigitalSchoolFragment"
-        android:name="in.silive.tifac.presentation.ui.akgecDigitalSchool.AkgecDigitalSchoolFragment"
+        android:name="in.silive.tifac.presentation.fragments.akgecDigitalSchool.AkgecDigitalSchoolFragment"
         android:label="AkgecDigitalSchoolFragment"
         tools:layout="@layout/fragment_akgec_digital_school"/>
 </navigation>
