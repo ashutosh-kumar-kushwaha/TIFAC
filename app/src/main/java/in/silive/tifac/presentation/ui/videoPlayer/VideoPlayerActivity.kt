@@ -26,14 +26,14 @@ class VideoPlayerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_video)
 
-        if(videoPlayerViewModel.videoId == "") videoPlayerViewModel.videoId =
-            intent.getStringExtra("videoId").toString()
+        if(videoPlayerViewModel.id == "") videoPlayerViewModel.id =
+            intent.getStringExtra("id").toString()
 
         lifecycle.addObserver(binding.youtubePlayerView)
 
         val youTubePlayerListener = object : AbstractYouTubePlayerListener(){
             override fun onReady(youTubePlayer: YouTubePlayer) {
-                youTubePlayer.loadVideo(videoPlayerViewModel.videoId, 0F)
+                youTubePlayer.loadVideo(videoPlayerViewModel.id, 0F)
             }
         }
 
@@ -43,25 +43,6 @@ class VideoPlayerActivity : AppCompatActivity() {
 
         binding.youtubePlayerView.initialize(youTubePlayerListener, true, iFrameOptions)
 
-
-
-        videoPlayerViewModel.getVideoDetails()
-
-
-
-        videoPlayerViewModel.videoDetails.observe(this){
-            when(it){
-                is NetworkResult.Success -> {
-
-                }
-                is NetworkResult.Error -> {
-
-                }
-                is NetworkResult.Loading -> {
-
-                }
-            }
-        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

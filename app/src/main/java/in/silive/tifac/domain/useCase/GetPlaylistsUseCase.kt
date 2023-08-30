@@ -9,7 +9,7 @@ import retrofit2.HttpException
 import javax.inject.Inject
 
 class GetPlaylistsUseCase @Inject constructor(private val playlistRepository: PlaylistRepository) {
-    suspend operator fun invoke(): Flow<NetworkResult<List<Playlist>>> = flow {
+    operator fun invoke(): Flow<NetworkResult<List<Playlist>>> = flow {
         emit(NetworkResult.Loading())
         try {
             val playlists = playlistRepository.getPlaylists().content

@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
@@ -23,12 +24,7 @@ import javax.inject.Inject
 class AkgecDigitalSchoolViewModel @Inject constructor(
     private val getVideosUseCase: GetVideosUseCase,
     private val getPlaylistsUseCase: GetPlaylistsUseCase
-): ViewModel() {
-
-    init {
-        getVideos()
-        getPlaylists()
-    }
+) : ViewModel() {
 
     private val _videos = MutableStateFlow<List<Video>>(emptyList())
     val videos = _videos.asStateFlow()
@@ -48,46 +44,51 @@ class AkgecDigitalSchoolViewModel @Inject constructor(
     private val _playlistsErrorMessage = Channel<String>()
     val playlistsErrorMessage = _playlistsErrorMessage.receiveAsFlow()
 
-
     val searchText = MutableLiveData("")
 
-    fun getVideos(){
-        viewModelScope.launch {
-            getVideosUseCase().onEach {
-                when(it){
-                    is NetworkResult.Success -> {
-                        _videos.emit(it.data!!)
-                        _areVideosLoading.emit(false)
-                    }
-                    is NetworkResult.Error -> {
-                        _videosErrorMessage.send(it.message!!)
-                        _areVideosLoading.emit(false)
-                    }
-                    is NetworkResult.Loading -> {
-                        _areVideosLoading.emit(true)
-                    }
-                }
-            }
-        }
+    init {
+        getVideos()
+        getPlaylists()
     }
 
-    fun getPlaylists(){
-        viewModelScope.launch {
-            getPlaylistsUseCase().onEach {
-                when(it){
-                    is NetworkResult.Success -> {
-                        _playlists.emit(it.data!!)
-                        _arePlaylistsLoading.emit(false)
-                    }
-                    is NetworkResult.Error -> {
-                        _playlistsErrorMessage.send(it.message!!)
-                        _arePlaylistsLoading.emit(false)
-                    }
-                    is NetworkResult.Loading -> {
-                        _arePlaylistsLoading.emit(true)
-                    }
+    fun getVideos() {
+        getVideosUseCase().onEach {
+            when (it) {
+                is NetworkResult.Success -> {
+                    _videos.emit(it.data!!)
+                    _areVideosLoading.emit(false)
+                }
+
+                is NetworkResult.Error -> {
+                    _videosErrorMessage.send(it.message!!)
+                    _areVideosLoading.emit(false)
+                }
+
+                is NetworkResult.Loading -> {
+                    _areVideosLoading.emit(true)
                 }
             }
-        }
+        }.launchIn(viewModelScope)
+    }
+
+
+    fun getPlaylists() {
+        getPlaylistsUseCase().onEach {
+            when (it) {
+                is NetworkResult.Success -> {
+                    _playlists.emit(it.data!!)
+                    _arePlaylistsLoading.emit(false)
+                }
+
+                is NetworkResult.Error -> {
+                    _playlistsErrorMessage.send(it.message!!)
+                    _arePlaylistsLoading.emit(false)
+                }
+
+                is NetworkResult.Loading -> {
+                    _arePlaylistsLoading.emit(true)
+                }
+            }
+        }.launchIn(viewModelScope)
     }
 }
