@@ -14,9 +14,7 @@ class GetVideosUseCase @Inject constructor(private val videoRepository: VideoRep
     operator fun invoke() : Flow<NetworkResult<List<Video>>> = flow{
         emit(NetworkResult.Loading())
         try {
-            Log.d("Ashu", "invoke: Loading")
             val videos = videoRepository.getVideos().content.map { it.toVideo() }
-            Log.d("Ashu", "invoke: $videos")
             emit(NetworkResult.Success(videos))
         } catch (e: HttpException) {
             emit(NetworkResult.Error(e.localizedMessage ?: "An unexpected error occurred\nResponse code: ${e.code()}"))
