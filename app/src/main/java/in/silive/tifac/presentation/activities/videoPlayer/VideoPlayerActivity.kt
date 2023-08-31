@@ -1,10 +1,13 @@
 package `in`.silive.tifac.presentation.activities.videoPlayer
 
 import android.app.PictureInPictureParams
+import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.util.Rational
 import android.view.View
+import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +19,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Ful
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import dagger.hilt.android.AndroidEntryPoint
 import `in`.silive.tifac.R
+import `in`.silive.tifac.common.Utils.hide
+import `in`.silive.tifac.common.Utils.show
 import `in`.silive.tifac.databinding.ActivityVideoBinding
 import `in`.silive.tifac.presentation.viewModels.VideoPlayerViewModel
 
@@ -54,11 +59,16 @@ class VideoPlayerActivity : AppCompatActivity() {
 
         binding.youtubePlayerView.addFullscreenListener(object: FullscreenListener{
             override fun onEnterFullscreen(fullscreenView: View, exitFullscreen: () -> Unit) {
-
+                Log.d("Ashu", "onEnterFullscreen: ")
+                window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+                requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+                hideViews()
             }
 
             override fun onExitFullscreen() {
-
+                Log.d("Ashu", "onExitFullscreen: ")
+                requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+                showViews()
             }
 
         })
@@ -78,5 +88,27 @@ class VideoPlayerActivity : AppCompatActivity() {
         enterPictureInPictureMode(PictureInPictureParams.Builder()
                 .setAspectRatio(Rational(16,9))
                 .build())
+    }
+
+    fun hideViews(){
+        binding.toolbar.hide()
+        binding.bg1.hide()
+        binding.bg2.hide()
+        binding.tvVideoName.hide()
+        binding.imgAkgecLogo.hide()
+        binding.tvNoOfVideos.hide()
+        binding.tvRecommended.hide()
+        binding.rvRecommendation.hide()
+    }
+
+    fun showViews(){
+        binding.toolbar.show()
+        binding.bg1.show()
+        binding.bg2.show()
+        binding.tvVideoName.show()
+        binding.imgAkgecLogo.show()
+        binding.tvNoOfVideos.show()
+        binding.tvRecommended.show()
+        binding.rvRecommendation.show()
     }
 }

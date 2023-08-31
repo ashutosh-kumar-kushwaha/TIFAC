@@ -14,6 +14,7 @@
         android:orientation="vertical"
         tools:context=".presentation.activities.videoPlayer.VideoPlayerActivity">
         <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white">
@@ -48,7 +49,7 @@
                     android:layout_weight="1"/>
                 
                 <ImageView
-                    android:id="@+id/akgec_skills_btn"
+                    android:id="@+id/btn_akgecSkills"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:padding="5dp"
@@ -71,27 +72,28 @@
 
 
                 <View
+                    android:id="@+id/bg_1"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="@color/color4"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/bg_1"
-                    app:layout_constraintBottom_toBottomOf="@id/recommendation_recyclerView"/>
+                    app:layout_constraintTop_toBottomOf="@id/bg_2"
+                    app:layout_constraintBottom_toBottomOf="@id/rv_recommendation"/>
 
                 <View
-                    android:id="@+id/bg_1"
+                    android:id="@+id/bg_2"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginBottom="-24dp"
                     android:background="@drawable/toolbar_bg"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/youtube_player_view"
-                    app:layout_constraintBottom_toBottomOf="@id/akgec_logo_img_vw"/>
+                    app:layout_constraintTop_toTopOf="@id/youtubePlayerView"
+                    app:layout_constraintBottom_toBottomOf="@id/img_akgecLogo"/>
 
                 <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-                    android:id="@+id/youtube_player_view"
+                    android:id="@+id/youtubePlayerView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:enableAutomaticInitialization="false"
@@ -100,7 +102,7 @@
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
-                    android:id="@+id/video_name_txt_vw"
+                    android:id="@+id/tv_videoName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -109,23 +111,23 @@
                     android:fontFamily="@font/gilroy_semibold"
                     android:textSize="16sp"
                     android:textColor="@color/color6"
-                    app:layout_constraintTop_toBottomOf="@id/youtube_player_view"
+                    app:layout_constraintTop_toBottomOf="@id/youtubePlayerView"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
 
                 <ImageView
-                    android:id="@+id/akgec_logo_img_vw"
+                    android:id="@+id/img_akgecLogo"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:src="@drawable/akgec_logo"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="12dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/video_name_txt_vw"
+                    app:layout_constraintTop_toBottomOf="@id/tv_videoName"
                     android:contentDescription="@string/akgec_digital_school" />
 
                 <TextView
-                    android:id="@+id/no_of_videos_txt_vw"
+                    android:id="@+id/tv_noOfVideos"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
@@ -133,13 +135,13 @@
                     android:fontFamily="@font/gilroy_semibold"
                     android:textSize="12sp"
                     android:textColor="@color/color13"
-                    app:layout_constraintStart_toEndOf="@id/akgec_logo_img_vw"
-                    app:layout_constraintTop_toTopOf="@id/akgec_logo_img_vw"
-                    app:layout_constraintBottom_toBottomOf="@id/akgec_logo_img_vw"
+                    app:layout_constraintStart_toEndOf="@id/img_akgecLogo"
+                    app:layout_constraintTop_toTopOf="@id/img_akgecLogo"
+                    app:layout_constraintBottom_toBottomOf="@id/img_akgecLogo"
                     app:layout_constraintEnd_toEndOf="parent"/>
 
                 <TextView
-                    android:id="@+id/recommended_txt_vw"
+                    android:id="@+id/tv_recommended"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -151,10 +153,10 @@
                     android:text="@string/recommendation"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/akgec_logo_img_vw"/>
+                    app:layout_constraintTop_toBottomOf="@id/img_akgecLogo"/>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recommendation_recyclerView"
+                    android:id="@+id/rv_recommendation"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -163,7 +165,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/recommended_txt_vw"/>
+                    app:layout_constraintTop_toBottomOf="@id/tv_recommended"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
