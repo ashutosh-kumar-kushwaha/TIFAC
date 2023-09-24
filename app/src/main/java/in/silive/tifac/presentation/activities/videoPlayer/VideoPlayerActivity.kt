@@ -8,6 +8,8 @@ import android.util.Log
 import android.util.Rational
 import android.view.View
 import android.view.WindowManager
+import android.widget.Button
+import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -47,6 +49,11 @@ class VideoPlayerActivity : AppCompatActivity() {
                     DefaultPlayerUiController(binding.youtubePlayerView, youTubePlayer)
 
                 binding.youtubePlayerView.setCustomPlayerUi(defaultPlayerUiController.rootView)
+
+                val fullScreenBtn = defaultPlayerUiController.rootView.findViewById<ImageView>(com.pierfrancescosoffritti.androidyoutubeplayer.core.customui.R.id.fullscreen_button)
+                fullScreenBtn.setOnClickListener {
+                    youTubePlayer.toggleFullscreen()
+                }
             }
         }
 
@@ -60,18 +67,24 @@ class VideoPlayerActivity : AppCompatActivity() {
         binding.youtubePlayerView.addFullscreenListener(object: FullscreenListener{
             override fun onEnterFullscreen(fullscreenView: View, exitFullscreen: () -> Unit) {
                 Log.d("Ashu", "onEnterFullscreen: ")
-                window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+//                window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+//                binding.fullScreenViewController.addView(fullscreenView)
                 requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+                binding.youtubePlayerView.matchParent()
                 hideViews()
             }
 
             override fun onExitFullscreen() {
                 Log.d("Ashu", "onExitFullscreen: ")
                 requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+                binding.youtubePlayerView.wrapContent()
+//                binding.fullScreenViewController.removeAllViews()
                 showViews()
             }
 
         })
+
+
 
     }
 
