@@ -17,4 +17,5 @@
     <string name="search_lecture">Search lecture</string>
     <string name="back">Back</string>
     <string name="recommendation">Recommendation</string>
+    <string name="title_activity_compose">ComposeActivity</string>
 </resources>
