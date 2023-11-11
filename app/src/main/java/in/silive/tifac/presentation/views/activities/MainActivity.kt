@@ -1,4 +1,4 @@
-package `in`.silive.tifac.presentation.activities
+package `in`.silive.tifac.presentation.views.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

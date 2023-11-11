@@ -1,4 +1,4 @@
-package `in`.silive.tifac.presentation.fragments.playlists
+package `in`.silive.tifac.presentation.views.fragments.playlists
 
 import android.os.Bundle
 import android.util.Log
@@ -11,9 +11,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.snackbar.Snackbar
-import `in`.silive.tifac.presentation.adapters.PlaylistsAdapter
+import `in`.silive.tifac.presentation.views.adapters.PlaylistsAdapter
 import `in`.silive.tifac.databinding.FragmentPlaylistsBinding
-import `in`.silive.tifac.presentation.adapters.PlaylistClickListener
+import `in`.silive.tifac.presentation.views.adapters.PlaylistClickListener
 import `in`.silive.tifac.presentation.viewModels.AkgecDigitalSchoolViewModel
 import kotlinx.coroutines.launch
 

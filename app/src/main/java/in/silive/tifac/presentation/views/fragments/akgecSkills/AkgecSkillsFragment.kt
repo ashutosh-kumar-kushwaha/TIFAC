@@ -1,4 +1,4 @@
-package `in`.silive.tifac.presentation.fragments.akgecSkills
+package `in`.silive.tifac.presentation.views.fragments.akgecSkills
 
 import android.annotation.SuppressLint
 import android.os.Bundle

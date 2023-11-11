@@ -1,4 +1,4 @@
-package `in`.silive.tifac.presentation.activities.videoPlayer
+package `in`.silive.tifac.presentation.views.activities.videoPlayer
 
 import android.app.PictureInPictureParams
 import android.os.Build

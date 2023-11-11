@@ -6,7 +6,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.fragments.splash.SplashFragment"
+        tools:context=".presentation.views.fragments.splash.SplashFragment"
         android:background="@color/color4">
 
         <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,4 +1,4 @@
-package `in`.silive.tifac.presentation.fragments.splash
+package `in`.silive.tifac.presentation.views.fragments.splash
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

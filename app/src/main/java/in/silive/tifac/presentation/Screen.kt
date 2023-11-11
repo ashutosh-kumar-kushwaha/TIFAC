@@ -4,5 +4,5 @@ sealed class Screen(val route: String){
     object AkgecDigitalSchoolScreen: Screen("akgec_digital_school_screen")
     object VideosScreen: Screen("videos_screen")
     object PlaylistsScreen: Screen("playlists_screen")
-    object SelectionScreen: Screen("selection_screen")
+    object OnboardingScreen: Screen("onboarding_screen")
 }

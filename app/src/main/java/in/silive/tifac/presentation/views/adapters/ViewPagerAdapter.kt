@@ -1,9 +1,9 @@
-package `in`.silive.tifac.presentation.adapters
+package `in`.silive.tifac.presentation.views.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import `in`.silive.tifac.presentation.fragments.playlists.PlaylistsFragment
-import `in`.silive.tifac.presentation.fragments.videos.VideosFragment
+import `in`.silive.tifac.presentation.views.fragments.playlists.PlaylistsFragment
+import `in`.silive.tifac.presentation.views.fragments.videos.VideosFragment
 
 class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int {

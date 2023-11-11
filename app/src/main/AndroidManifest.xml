@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.activities.ComposeActivity"
+            android:name=".presentation.ComposeActivity"
             android:exported="true"
             android:label="@string/title_activity_compose"
             android:theme="@style/Theme.TIFAC">
@@ -27,12 +27,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.activities.videoPlayer.VideoPlayerActivity"
+            android:name=".presentation.views.activities.videoPlayer.VideoPlayerActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:exported="false"
             android:supportsPictureInPicture="true" />
         <activity
-            android:name=".presentation.activities.MainActivity"
+            android:name=".presentation.views.activities.MainActivity"
             android:exported="true"/>
     </application>
 

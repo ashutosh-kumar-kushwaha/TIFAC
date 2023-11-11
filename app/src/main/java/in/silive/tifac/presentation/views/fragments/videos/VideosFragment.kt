@@ -1,4 +1,4 @@
-package `in`.silive.tifac.presentation.fragments.videos
+package `in`.silive.tifac.presentation.views.fragments.videos
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,11 +12,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import `in`.silive.tifac.presentation.adapters.VideosAdapter
+import `in`.silive.tifac.presentation.views.adapters.VideosAdapter
 import `in`.silive.tifac.databinding.FragmentVideosBinding
-import `in`.silive.tifac.presentation.adapters.VideoClickListener
+import `in`.silive.tifac.presentation.views.adapters.VideoClickListener
 import `in`.silive.tifac.presentation.viewModels.AkgecDigitalSchoolViewModel
-import `in`.silive.tifac.presentation.activities.videoPlayer.VideoPlayerActivity
+import `in`.silive.tifac.presentation.views.activities.videoPlayer.VideoPlayerActivity
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint

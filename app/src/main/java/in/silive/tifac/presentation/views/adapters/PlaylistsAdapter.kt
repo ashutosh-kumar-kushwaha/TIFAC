@@ -1,4 +1,4 @@
-package `in`.silive.tifac.presentation.adapters
+package `in`.silive.tifac.presentation.views.adapters
 
 import android.view.LayoutInflater
 import android.view.View

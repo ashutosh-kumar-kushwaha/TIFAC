@@ -1,4 +1,4 @@
-package `in`.silive.tifac.presentation.activities.ui.theme
+package `in`.silive.tifac.presentation.views.activities.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

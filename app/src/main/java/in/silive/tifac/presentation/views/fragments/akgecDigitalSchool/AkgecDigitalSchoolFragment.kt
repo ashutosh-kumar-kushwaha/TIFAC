@@ -1,4 +1,4 @@
-package `in`.silive.tifac.presentation.fragments.akgecDigitalSchool
+package `in`.silive.tifac.presentation.views.fragments.akgecDigitalSchool
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -21,7 +21,7 @@ import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import `in`.silive.tifac.R
-import `in`.silive.tifac.presentation.adapters.ViewPagerAdapter
+import `in`.silive.tifac.presentation.views.adapters.ViewPagerAdapter
 import `in`.silive.tifac.databinding.FragmentAkgecDigitalSchoolBinding
 import `in`.silive.tifac.presentation.viewModels.AkgecDigitalSchoolViewModel
 import java.lang.reflect.Field
