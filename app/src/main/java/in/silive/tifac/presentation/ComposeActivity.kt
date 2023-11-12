@@ -7,11 +7,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import `in`.silive.tifac.presentation.onboarding.OnboardingScreen
-import `in`.silive.tifac.presentation.views.activities.ui.theme.TIFACTheme
+import `in`.silive.tifac.presentation.ui.theme.TIFACTheme
 
 class ComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +22,7 @@ class ComposeActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
+                    color = Color.White
                 ) {
                     App()
                 }

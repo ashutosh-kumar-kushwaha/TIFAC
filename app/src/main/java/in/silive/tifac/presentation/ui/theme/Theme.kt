@@ -1,4 +1,4 @@
-package `in`.silive.tifac.presentation.views.activities.ui.theme
+package `in`.silive.tifac.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build
