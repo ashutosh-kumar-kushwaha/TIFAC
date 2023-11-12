@@ -4,8 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -35,13 +33,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import `in`.silive.tifac.R
+import `in`.silive.tifac.presentation.Screen
 import `in`.silive.tifac.presentation.ui.theme.BGColor1
 import `in`.silive.tifac.presentation.ui.theme.BtnColor1
 import `in`.silive.tifac.presentation.ui.theme.TextColor1
 import `in`.silive.tifac.presentation.ui.theme.TextColor2
 
 @Composable
-fun OnboardingScreen() {
+fun OnboardingScreen(navigateTo: (route: String) -> Unit) {
     Column(
         modifier = Modifier
             .background(BGColor1)
@@ -59,7 +58,9 @@ fun OnboardingScreen() {
         )
         Spacer(modifier = Modifier.height(49.dp))
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+                navigateTo(Screen.AkgecDigitalSchoolScreen.route)
+            },
             shape = RoundedCornerShape(4.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = BtnColor1,
@@ -82,7 +83,9 @@ fun OnboardingScreen() {
         }
         Spacer(modifier = Modifier.height(28.dp))
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+                navigateTo(Screen.AkgecSkillsScreen.route)
+            },
             shape = RectangleShape,
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.Transparent,
@@ -124,5 +127,7 @@ fun OnboardingScreen() {
 @Preview(showBackground = true)
 @Composable
 fun Preview() {
-    OnboardingScreen()
+    OnboardingScreen{
+
+    }
 }

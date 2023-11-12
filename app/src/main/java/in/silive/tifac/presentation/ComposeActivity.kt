@@ -36,7 +36,9 @@ fun App() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Screen.OnboardingScreen.route) {
         composable(Screen.OnboardingScreen.route) {
-            OnboardingScreen()
+            OnboardingScreen {
+                navController.navigate(it)
+            }
         }
     }
 }
