@@ -40,21 +40,21 @@ fun Tabs() {
         modifier = Modifier
             .fillMaxWidth()
             .background(
-                color = Color.White,
-                shape = RoundedCornerShape(4.dp)
+                color = Color.White
             ),
         indicator = {},
         divider = {}
     ) {
         titles.forEachIndexed { index, title ->
             Tab(
-                selected = selectedIndex == titles.indexOf(title),
+                selected = selectedIndex == index,
                 onClick = {
                     selectedIndex = index
                 },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(40.dp)
+                    .background(Color.White)
                     .background(
                         color = if (selectedIndex == index) BGColor2 else Color.Transparent,
                         shape = RoundedCornerShape(4.dp)

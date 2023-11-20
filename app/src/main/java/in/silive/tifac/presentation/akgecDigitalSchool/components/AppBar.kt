@@ -1,8 +1,11 @@
 package `in`.silive.tifac.presentation.akgecDigitalSchool.components
 
+import android.content.res.Configuration.UI_MODE_NIGHT_NO
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -115,7 +118,13 @@ fun AppBar() {
     }
 }
 
-@Preview
+@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun PreviewAppBarNightMode() {
+    AppBar()
+}
+
+@Preview(uiMode = UI_MODE_NIGHT_NO)
 @Composable
 fun PreviewAppBar() {
     AppBar()
