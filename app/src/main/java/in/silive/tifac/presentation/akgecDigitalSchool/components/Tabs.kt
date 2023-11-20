@@ -37,8 +37,14 @@ fun Tabs() {
 
     TabRow(
         selectedTabIndex = selectedIndex,
-        modifier = Modifier.fillMaxWidth(),
-        indicator = {}
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(
+                color = Color.White,
+                shape = RoundedCornerShape(4.dp)
+            ),
+        indicator = {},
+        divider = {}
     ) {
         titles.forEachIndexed { index, title ->
             Tab(

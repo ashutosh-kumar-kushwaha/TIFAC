@@ -18,4 +18,6 @@
     <string name="back">Back</string>
     <string name="recommendation">Recommendation</string>
     <string name="title_activity_compose">ComposeActivity</string>
+    <string name="akgec_logo">AKGEC Logo</string>
+    <string name="search">Search</string>
 </resources>
