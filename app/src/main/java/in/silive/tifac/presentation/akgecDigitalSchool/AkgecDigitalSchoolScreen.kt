@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,15 +13,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import `in`.silive.tifac.presentation.akgecDigitalSchool.components.AppBar
+import `in`.silive.tifac.presentation.akgecDigitalSchool.components.PlaylistsScreen
 import `in`.silive.tifac.presentation.akgecDigitalSchool.components.VideosScreen
 import `in`.silive.tifac.presentation.viewModels.AkgecDigitalSchoolViewModel
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun AkgecDigitalSchoolScreen(
     viewModel: AkgecDigitalSchoolViewModel = hiltViewModel()
 ) {
     val videos = viewModel.videos.collectAsStateWithLifecycle()
+    val playlists = viewModel.playlists.collectAsStateWithLifecycle()
 
     Scaffold(
         topBar = {
@@ -48,7 +49,7 @@ fun AkgecDigitalSchoolScreen(
                     VideosScreen(videos.value)
                 }
                 1 -> {
-
+                    PlaylistsScreen(playlists.value)
                 }
             }
         }
@@ -57,6 +58,6 @@ fun AkgecDigitalSchoolScreen(
 
 @Preview
 @Composable
-fun preview() {
+fun Preview() {
     AkgecDigitalSchoolScreen()
 }

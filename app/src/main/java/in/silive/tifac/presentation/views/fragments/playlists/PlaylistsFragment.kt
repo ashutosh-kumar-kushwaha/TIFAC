@@ -45,7 +45,7 @@ class PlaylistsFragment : Fragment(), PlaylistClickListener {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
                 akgecDigitalSchoolViewModel.playlists.collect{
-                    playlistsAdapter.submitList(it)
+//                    playlistsAdapter.submitList(it)
                 }
             }
         }
