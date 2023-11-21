@@ -3,6 +3,7 @@ package `in`.silive.tifac.presentation.akgecDigitalSchool.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -25,13 +26,10 @@ fun VideosScreen(videos: List<Video>) {
         modifier = Modifier
             .fillMaxWidth()
             .background(Color.White)
-            .padding(
-                horizontal = 24.dp,
-                vertical = 13.dp
-            )
     ) {
         LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(24.dp)
+            verticalArrangement = Arrangement.spacedBy(24.dp),
+            contentPadding = PaddingValues(horizontal = 24.dp, vertical = 12.dp)
         ) {
             item {
                 Text(
