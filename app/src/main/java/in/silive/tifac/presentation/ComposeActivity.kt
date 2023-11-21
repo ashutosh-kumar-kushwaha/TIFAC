@@ -11,10 +11,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 import `in`.silive.tifac.presentation.akgecDigitalSchool.AkgecDigitalSchoolScreen
 import `in`.silive.tifac.presentation.onboarding.OnboardingScreen
 import `in`.silive.tifac.presentation.ui.theme.TIFACTheme
 
+@AndroidEntryPoint
 class ComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

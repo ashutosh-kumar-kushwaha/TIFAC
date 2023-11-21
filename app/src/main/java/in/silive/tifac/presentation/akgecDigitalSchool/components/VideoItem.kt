@@ -17,25 +17,28 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import `in`.silive.tifac.R
+import `in`.silive.tifac.common.time.TimesAgoFormat
+import `in`.silive.tifac.domain.model.Video
 import `in`.silive.tifac.presentation.ui.theme.TextColor5
 import `in`.silive.tifac.presentation.ui.theme.TextColor6
 import `in`.silive.tifac.presentation.ui.theme.gilroy
 
 @Composable
-fun VideoItem() {
+fun VideoItem(video: Video) {
     Column(
         modifier = Modifier
             .fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.sharma_ji),
+        AsyncImage(
+            model = video.thumbnail,
             contentDescription = "Thumbnail",
             modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(16f / 9f),
-            contentScale = ContentScale.FillWidth
+            contentScale = ContentScale.FillWidth,
         )
         Row(
             modifier = Modifier
@@ -50,16 +53,19 @@ fun VideoItem() {
                     .width(25.dp),
                 contentScale = ContentScale.FillWidth
             )
-            Column {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
                 Text(
-                    text = "“Secure Electronic Transaction” Cryptography and Network Security Lecture 03 By Ms Shilpi Gupta",
+                    text = video.title,
                     fontFamily = gilroy,
                     fontWeight = FontWeight(500),
                     fontSize = 12.sp,
-                    color = TextColor5
+                    color = TextColor5,
+                    lineHeight = 15.sp
                 )
                 Text(
-                    text = "1 days ago",
+                    text = TimesAgoFormat().getTimeDifference(video.publishedAt.substring(0,11)),
                     fontFamily = gilroy,
                     fontWeight = FontWeight(500),
                     fontSize = 10.sp,
@@ -75,5 +81,5 @@ fun VideoItem() {
 @Preview(showBackground = true)
 @Composable
 fun PreviewVideos() {
-    VideoItem()
+//    VideoItem()
 }

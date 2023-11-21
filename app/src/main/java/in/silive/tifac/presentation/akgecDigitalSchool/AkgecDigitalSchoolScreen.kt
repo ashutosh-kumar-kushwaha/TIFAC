@@ -2,7 +2,6 @@ package `in`.silive.tifac.presentation.akgecDigitalSchool
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -12,12 +11,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import `in`.silive.tifac.presentation.akgecDigitalSchool.components.AppBar
 import `in`.silive.tifac.presentation.akgecDigitalSchool.components.VideosScreen
+import `in`.silive.tifac.presentation.viewModels.AkgecDigitalSchoolViewModel
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun AkgecDigitalSchoolScreen() {
+fun AkgecDigitalSchoolScreen(
+    viewModel: AkgecDigitalSchoolViewModel = hiltViewModel()
+) {
+    val videos = viewModel.videos.collectAsStateWithLifecycle()
+
     Scaffold(
         topBar = {
             AppBar()
@@ -39,7 +45,7 @@ fun AkgecDigitalSchoolScreen() {
         ) {page ->
             when(page){
                 0 -> {
-                    VideosScreen()
+                    VideosScreen(videos.value)
                 }
                 1 -> {
 
