@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import `in`.silive.tifac.presentation.akgecDigitalSchool.components.AppBar
+import `in`.silive.tifac.presentation.akgecDigitalSchool.components.VideosScreen
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
@@ -38,7 +39,7 @@ fun AkgecDigitalSchoolScreen() {
         ) {page ->
             when(page){
                 0 -> {
-
+                    VideosScreen()
                 }
                 1 -> {
 
