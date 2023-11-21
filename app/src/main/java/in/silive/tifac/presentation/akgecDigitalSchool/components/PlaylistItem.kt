@@ -18,27 +18,22 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import coil.compose.rememberAsyncImagePainter
-import coil.compose.rememberImagePainter
-import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
-import com.bumptech.glide.integration.compose.GlideImage
 import `in`.silive.tifac.R
 import `in`.silive.tifac.common.time.TimesAgoFormat
-import `in`.silive.tifac.domain.model.Video
+import `in`.silive.tifac.domain.model.Playlist
 import `in`.silive.tifac.presentation.ui.theme.TextColor5
 import `in`.silive.tifac.presentation.ui.theme.TextColor6
 import `in`.silive.tifac.presentation.ui.theme.gilroy
 
-@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun VideoItem(video: Video) {
+fun PlaylistItem(playlist: Playlist) {
     Column(
         modifier = Modifier
             .fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        GlideImage(
-            model = video.thumbnail,
+        AsyncImage(
+            model = playlist,
             contentDescription = "Thumbnail",
             modifier = Modifier
                 .fillMaxWidth()
@@ -62,7 +57,7 @@ fun VideoItem(video: Video) {
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 Text(
-                    text = video.title,
+                    text = playlist.title,
                     fontFamily = gilroy,
                     fontWeight = FontWeight(500),
                     fontSize = 12.sp,
@@ -70,7 +65,7 @@ fun VideoItem(video: Video) {
                     lineHeight = 15.sp
                 )
                 Text(
-                    text = TimesAgoFormat().getTimeDifference(video.publishedAt.substring(0,11)),
+                    text = TimesAgoFormat().getTimeDifference(playlist.publishedAt.substring(0,11)),
                     fontFamily = gilroy,
                     fontWeight = FontWeight(500),
                     fontSize = 10.sp,
@@ -79,12 +74,16 @@ fun VideoItem(video: Video) {
             }
         }
     }
-
-
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
-fun PreviewVideos() {
-//    VideoItem()
+fun PreviewPlaylist(){
+    PlaylistItem(playlist = Playlist(
+        "1",
+        "1 days ago",
+        "",
+        "“Secure Electronic Transaction” Cryptography and Network Security Lecture 03 By Ms Shilpi Gupta"
+    )
+    )
 }

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import `in`.silive.tifac.common.NetworkResult
-import `in`.silive.tifac.data.remote.dto.Playlist
+import `in`.silive.tifac.data.remote.dto.PlaylistDto
 import `in`.silive.tifac.domain.model.Video
 import `in`.silive.tifac.domain.useCase.GetPlaylistsUseCase
 import `in`.silive.tifac.domain.useCase.GetVideosUseCase
@@ -17,7 +17,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,7 +28,7 @@ class AkgecDigitalSchoolViewModel @Inject constructor(
     private val _videos = MutableStateFlow<List<Video>>(emptyList())
     val videos = _videos.asStateFlow()
 
-    private val _playlists = MutableStateFlow<List<Playlist>>(emptyList())
+    private val _playlists = MutableStateFlow<List<PlaylistDto>>(emptyList())
     val playlists = _playlists.asStateFlow()
 
     private val _areVideosLoading = MutableSharedFlow<Boolean>()

@@ -8,23 +8,23 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import `in`.silive.tifac.databinding.PlaylistItemBinding
-import `in`.silive.tifac.data.remote.dto.Playlist
+import `in`.silive.tifac.data.remote.dto.PlaylistDto
 import `in`.silive.tifac.common.time.TimesAgoFormat
 import `in`.silive.tifac.common.transformation.CropTopBottomTransformation
 
-class PlaylistsAdapter(private val playlistClickListener: PlaylistClickListener) : ListAdapter<Playlist, PlaylistsAdapter.PlaylistViewHolder>(
-    object : ItemCallback<Playlist>(){
-        override fun areItemsTheSame(oldItem: Playlist, newItem: Playlist): Boolean {
+class PlaylistsAdapter(private val playlistClickListener: PlaylistClickListener) : ListAdapter<PlaylistDto, PlaylistsAdapter.PlaylistViewHolder>(
+    object : ItemCallback<PlaylistDto>(){
+        override fun areItemsTheSame(oldItem: PlaylistDto, newItem: PlaylistDto): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Playlist, newItem: Playlist): Boolean {
+        override fun areContentsTheSame(oldItem: PlaylistDto, newItem: PlaylistDto): Boolean {
             return oldItem == newItem
         }
     }
 ) {
     inner class PlaylistViewHolder(private val binding: PlaylistItemBinding) : RecyclerView.ViewHolder(binding.root), View.OnClickListener{
-        fun bind(playlist: Playlist){
+        fun bind(playlist: PlaylistDto){
             binding.thumbnailImgVw.load(playlist.thumbnails.high.url){
                 transformations(
                     CropTopBottomTransformation()
