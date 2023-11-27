@@ -1,5 +1,6 @@
 package `in`.silive.tifac.presentation.akgecDigitalSchool.components
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
@@ -30,13 +31,16 @@ import `in`.silive.tifac.presentation.ui.theme.TextColor3
 import `in`.silive.tifac.presentation.ui.theme.gilroy
 
 @Composable
-fun Tabs() {
+fun Tabs(
+    selectedTabIndex : Int = 0,
+    onTabChanged: (Int) -> Unit = {}
+) {
+    Log.d("Ashu", "Tabs: $selectedTabIndex")
     val titles = listOf("Videos", "Playlists")
     val icons = listOf(R.drawable.ic_video, R.drawable.ic_playlist)
-    var selectedIndex by remember { mutableIntStateOf(0) }
 
     TabRow(
-        selectedTabIndex = selectedIndex,
+        selectedTabIndex = selectedTabIndex,
         modifier = Modifier
             .fillMaxWidth()
             .background(
@@ -47,16 +51,16 @@ fun Tabs() {
     ) {
         titles.forEachIndexed { index, title ->
             Tab(
-                selected = selectedIndex == index,
+                selected = selectedTabIndex == index,
                 onClick = {
-                    selectedIndex = index
+                    onTabChanged(index)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(40.dp)
                     .background(Color.White)
                     .background(
-                        color = if (selectedIndex == index) BGColor2 else Color.Transparent,
+                        color = if (selectedTabIndex == index) BGColor2 else Color.Transparent,
                         shape = RoundedCornerShape(4.dp)
                     )
             ) {

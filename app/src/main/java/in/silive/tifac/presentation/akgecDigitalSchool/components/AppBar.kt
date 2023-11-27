@@ -32,7 +32,7 @@ import `in`.silive.tifac.presentation.ui.theme.TextColor4
 import `in`.silive.tifac.presentation.ui.theme.gilroy
 
 @Composable
-fun AppBar() {
+fun AppBar(selectedTabIndex: Int, onTabChanged: (Int) -> Unit = {}){
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -112,18 +112,22 @@ fun AppBar() {
                     .padding(end = 8.dp)
             )
         }
-        Tabs()
+        Tabs(
+            selectedTabIndex = selectedTabIndex
+        ){
+            onTabChanged(it)
+        }
     }
 }
 
 @Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun PreviewAppBarNightMode() {
-    AppBar()
+//    AppBar(selectedTabIndex = selectedTabIndex)
 }
 
 @Preview(uiMode = UI_MODE_NIGHT_NO)
 @Composable
 fun PreviewAppBar() {
-    AppBar()
+//    AppBar(selectedTabIndex = selectedTabIndex)
 }
