@@ -7,11 +7,7 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,14 +31,12 @@ fun AkgecDigitalSchoolScreen(
         2
     }
 
-    var selectedTabIndex by remember { mutableIntStateOf(0) }
-
     val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
         topBar = {
             AppBar(
-                selectedTabIndex = selectedTabIndex,
+                selectedTabIndex = pagerState.currentPage,
             ){
                 coroutineScope.launch {
                     pagerState.animateScrollToPage(it)
@@ -63,11 +57,9 @@ fun AkgecDigitalSchoolScreen(
             when(page){
                 0 -> {
                     VideosScreen(videos.value)
-                    selectedTabIndex = 0
                 }
                 1 -> {
                     PlaylistsScreen(playlists.value)
-                    selectedTabIndex = 1
                 }
             }
         }
