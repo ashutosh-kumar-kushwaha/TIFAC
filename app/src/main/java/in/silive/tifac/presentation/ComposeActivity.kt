@@ -14,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import `in`.silive.tifac.presentation.akgecDigitalSchool.AkgecDigitalSchoolScreen
 import `in`.silive.tifac.presentation.onboarding.OnboardingScreen
+import `in`.silive.tifac.presentation.search.SearchScreen
 import `in`.silive.tifac.presentation.ui.theme.TIFACTheme
 
 @AndroidEntryPoint
@@ -44,7 +45,12 @@ fun App() {
             }
         }
         composable(Screen.AkgecDigitalSchoolScreen.route) {
-            AkgecDigitalSchoolScreen()
+            AkgecDigitalSchoolScreen {
+                navController.navigate(it)
+            }
+        }
+        composable(Screen.SearchScreen.route){
+            SearchScreen()
         }
     }
 }

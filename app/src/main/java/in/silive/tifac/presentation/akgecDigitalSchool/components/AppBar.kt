@@ -5,6 +5,7 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,13 +27,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import `in`.silive.tifac.R
+import `in`.silive.tifac.presentation.Screen
 import `in`.silive.tifac.presentation.ui.theme.BorderColor1
 import `in`.silive.tifac.presentation.ui.theme.TextColor3
 import `in`.silive.tifac.presentation.ui.theme.TextColor4
 import `in`.silive.tifac.presentation.ui.theme.gilroy
 
 @Composable
-fun AppBar(selectedTabIndex: Int, onTabChanged: (Int) -> Unit = {}){
+fun AppBar(selectedTabIndex: Int, onTabChanged: (Int) -> Unit = {}, navigateTo: (route: String) -> Unit = {}){
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -84,6 +86,9 @@ fun AppBar(selectedTabIndex: Int, onTabChanged: (Int) -> Unit = {}){
             modifier = Modifier
                 .fillMaxWidth()
                 .height(32.dp)
+                .clickable {
+                    navigateTo(Screen.SearchScreen.route)
+                }
                 .border(
                     width = 1.dp,
                     color = BorderColor1,

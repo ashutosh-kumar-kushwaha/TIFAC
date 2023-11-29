@@ -35,7 +35,6 @@ fun Tabs(
     selectedTabIndex : Int = 0,
     onTabChanged: (Int) -> Unit = {}
 ) {
-    Log.d("Ashu", "Tabs: $selectedTabIndex")
     val titles = listOf("Videos", "Playlists")
     val icons = listOf(R.drawable.ic_video, R.drawable.ic_playlist)
 

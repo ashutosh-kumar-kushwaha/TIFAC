@@ -22,7 +22,8 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun AkgecDigitalSchoolScreen(
-    viewModel: AkgecDigitalSchoolViewModel = hiltViewModel()
+    viewModel: AkgecDigitalSchoolViewModel = hiltViewModel(),
+    navigateTo: (route: String) -> Unit = {}
 ) {
     val videos = viewModel.videos.collectAsStateWithLifecycle()
     val playlists = viewModel.playlists.collectAsStateWithLifecycle()
@@ -37,10 +38,13 @@ fun AkgecDigitalSchoolScreen(
         topBar = {
             AppBar(
                 selectedTabIndex = pagerState.currentPage,
-            ){
-                coroutineScope.launch {
-                    pagerState.animateScrollToPage(it)
+                onTabChanged = {
+                    coroutineScope.launch {
+                        pagerState.animateScrollToPage(it)
+                    }
                 }
+            ) {
+                navigateTo(it)
             }
         },
         modifier = Modifier
@@ -53,11 +57,12 @@ fun AkgecDigitalSchoolScreen(
             state = pagerState,
             modifier = Modifier
                 .padding(it)
-        ) {page ->
-            when(page){
+        ) { page ->
+            when (page) {
                 0 -> {
                     VideosScreen(videos.value)
                 }
+
                 1 -> {
                     PlaylistsScreen(playlists.value)
                 }
