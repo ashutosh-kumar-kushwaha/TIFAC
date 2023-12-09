@@ -1,9 +1,13 @@
 package `in`.silive.tifac.presentation.search.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -21,7 +25,7 @@ fun RecentSearch() {
         modifier = Modifier
             .fillMaxWidth()
             .background(Color.White)
-            .padding(24.dp)
+            .padding(start = 24.dp, end = 24.dp, top = 24.dp)
     ) {
         Text(
             text = "Your Recent Search",
@@ -30,6 +34,16 @@ fun RecentSearch() {
             fontWeight = FontWeight(700),
             color = TextColor4,
         )
+        Spacer(modifier = Modifier.height(21.dp))
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            items(20) {
+                RecentSearchItem()
+            }
+        }
     }
 }
 

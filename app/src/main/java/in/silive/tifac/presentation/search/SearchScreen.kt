@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import `in`.silive.tifac.presentation.search.components.AppBar
+import `in`.silive.tifac.presentation.search.components.RecentSearch
 import `in`.silive.tifac.presentation.viewModels.SearchViewModel
 
 @Composable
@@ -23,6 +24,7 @@ fun SearchScreen(
         ){
             viewModel.onQueryChange(it)
         }
+        RecentSearch()
     }
 }
 
